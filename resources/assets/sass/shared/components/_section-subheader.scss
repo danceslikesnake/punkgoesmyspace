@@ -1,0 +1,24 @@
+.section-subheader {
+  margin-bottom: 16px;
+  height: 32px;
+
+  h1 {
+    font-size: 18px;
+    color: #6698CB;
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+  .blue-picks-logo {
+    height: 24px;
+    margin-right: 8px;
+  }
+  a {
+    font-weight: 700;
+    color: $myspace-blue;
+  }
+  @media screen and (max-width: 768px) {
+    .level-left + .level-right {
+      margin-top: 0;
+    }
+  }
+}

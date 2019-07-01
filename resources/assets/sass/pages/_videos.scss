@@ -1,0 +1,120 @@
+#videos {
+  .adjust-subheader-margin {
+    margin-bottom: -16px;
+  }
+  .video-profile {
+    padding: 0 0 8px 0;
+    a {
+      font-weight: 700;
+      color: $myspace-blue;
+    }
+
+    .video-profile-image {
+      margin-bottom: -8px;
+    }
+
+    .address {
+      margin: 8px 0;
+    }
+  }
+  .video-list {
+    li {
+      @media screen and (max-width: 599px){
+        width: 100%;
+      }
+    }
+    a {
+      color: $myspace-blue;
+    }
+    .video-link {
+      display: block;
+      background: #e5e5e5;
+      padding: 8px;
+
+      .video-cover {
+        position: relative;
+        width: 100%;
+        display: block;
+
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+      .video-cover:before {
+        content: "";
+        display: block;
+        padding-top: 56.25%;
+      }
+    }
+  }
+  .video-display {
+    margin-bottom: 16px;
+    position: relative;
+    padding-top: 56.25%;
+
+    iframe {
+      @include positionAbsolute($cover: true);
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .video-share {
+    font-size: 12px;
+
+    a {
+      font-weight: 700;
+      color: $myspace-blue;
+
+      i {
+        font-size: 18px;
+        margin-right: 8px;
+      }
+      .fa-facebook-square {
+        color: $facebook-blue;
+      }
+      .fa-twitter {
+        color: $twitter-blue;
+      }
+    }
+  }
+  .video-url-input {
+    input {
+      width: 80%;
+    }
+  }
+  .other-videos-list {
+    margin-bottom: 16px;
+
+    a {
+      color: $myspace-blue;
+    }
+    .other-video-link {
+      display: block;
+      background: #e5e5e5;
+      padding: 8px;
+
+      .other-video-cover {
+        position: relative;
+        width: 100%;
+        display: block;
+
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+      .other-video-cover:before {
+        content: "";
+        display: block;
+        padding-top: 56.25%;
+      }
+    }
+  }
+  .other-videos-footer {
+    a {
+      color: $myspace-blue;
+      font-weight: 700;
+    }
+  }
+}

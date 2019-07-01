@@ -1,0 +1,116 @@
+#header {
+  background: #2358B8;
+  background-image: linear-gradient(180deg, #4370C1 0%, #2459B8 10%, #1A4189 94%, #113679 100%);
+
+  .ad-container {
+    text-align: center;
+
+    @media screen and (min-width: 360px){
+      padding: 10px 0 0 0;
+    }
+
+    .ad-placeholder {
+      margin: 0 auto;
+      height: 75px;
+      width: 320px;
+
+      &.desktop {
+        display: none;
+      }
+      &.tablet {
+        display: none;
+      }
+
+      @media screen and (min-width: 600px) {
+        height: 90px;
+        width: 568px;
+
+        &.tablet {
+          display: block;
+        }
+        &.mobile {
+          display: none;
+        }
+      }
+      @media screen and (min-width: 768px) {
+        width: 728px;
+
+        &.desktop {
+          display: block;
+        }
+        &.tablet {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .nav-controls {
+    background: transparent;
+    padding: 0 16px;
+    min-height: auto;
+    height: 41px;
+  }
+
+  .navbar-menu {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .nav-links {
+    background: transparent;
+    padding: 0;
+    min-height: auto;
+
+    background-image: linear-gradient(180deg, #4370C1 0%, #2459B8 10%, #1A4189 94%, #113679 100%);
+
+    a {
+      line-height: 29px;
+      color: white;
+      padding: 0 10px;
+
+      &.add-border {
+        border-right: 1px solid #1B4591;
+      }
+
+      &:hover {
+        background: #1548AE;
+      }
+    }
+  }
+
+  .is-flush-right-on-mobile {
+    padding-right: 0;
+  }
+
+  @media screen and (max-width: 1087px) {
+    .navbar-menu {
+      -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+      align-items: stretch;
+      -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+    }
+    .navbar-start {
+      -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+      align-items: stretch;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+    }
+    .navbar-end {
+      -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+      align-items: stretch;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+  }
+}

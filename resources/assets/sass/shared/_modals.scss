@@ -1,0 +1,181 @@
+.modal {
+  z-index: 2000;
+  .modal-background {
+    background: rgba(white, 0.9);
+  }
+  .modal-content {
+    @include border-radius(8px);
+    @include transition(all, 0.2s);
+
+    position: relative;
+    background: white;
+    padding: 16px;
+
+    @media screen and (min-width: 360px){
+      padding: 32px;
+    }
+
+    -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.19);
+    -moz-box-shadow: 0 0 8px rgba(0,0,0,0.19);
+    box-shadow: 0 0 8px rgba(0,0,0,0.19);
+
+    .close-modal-btn {
+      @include positionAbsolute($top: 0, $right: 0);
+
+      color: darken(#DAD9DA, 20%);
+      display: inline-block;
+      padding: 16px;
+      border: none;
+      outline: none;
+      background: none;
+      font-size: 24px;
+      cursor: pointer;
+
+      &:hover {
+        color: darken(#DAD9DA, 30%);
+      }
+    }
+  }
+}
+
+.modal-newsletter {
+  .modal-content {
+    width: 288px;
+    max-height: calc(100vh - 50px);
+
+    @media screen and (min-width: 360px){
+      width: 300px;
+      max-height: calc(100vh - 160px);
+    }
+    @media screen and (min-width: 600px){
+      width: 476px;
+    }
+
+    .modal-newsletter-logo {
+      height: 48px;
+      margin-bottom: 8px;
+
+      @media screen and (min-width: 360px){
+        height: 56px;
+      }
+
+      @media screen and (min-width: 600px){
+        height: 72px;
+        margin-bottom: 16px;
+      }
+    }
+    .modal-newsletter-description {
+      font-family: 'museo-sans', serif;
+      text-transform: uppercase;
+      font-size: 16px;
+      margin-bottom: 16px;
+      color: #878787;
+    }
+    .modal-newsletter-form {
+      font-family: 'museo-sans', serif;
+
+      .field {
+        margin-bottom: 8px;
+
+        @media screen and (min-width: 600px){
+          margin-bottom: 16px;
+        }
+      }
+      label {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 300;
+      }
+      input {
+        background: rgba(#1CB6F1, 0.09);
+        border-color: #DAD9DA;
+        height: 24px;
+        line-height: 24px;
+
+        @media screen and (min-width: 360px){
+          height: 32px;
+          line-height: 32px;
+        }
+
+        @media screen and (min-width: 600px){
+          height: 48px;
+          line-height: 48px;
+        }
+      }
+
+      .button {
+        background: $fearless-blue !important;
+        text-transform: uppercase !important;
+        padding: 0 32px !important;
+        font-weight: 500 !important;
+        line-height: 40px !important;
+        height: 40px !important;
+
+        @media screen and (min-width: 600px){
+          line-height: 48px !important;
+          height: 48px !important;
+        }
+      }
+    }
+
+    .modal-newsletter-thanks {
+      i {
+        font-size: 72px;
+        color: $fearless-blue;
+      }
+    }
+  }
+
+  #mc_embed_signup .mc-field-group {
+    padding-bottom: 0 !important;
+  }
+  #mc_embed_signup div#mce-responses {
+    float: none !important;
+    top: inherit !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #mc_embed_signup div.response {
+    margin: 0 0 16px 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    top: inherit !important;
+  }
+}
+
+.modal-share-buttons {
+  .modal-share-description {
+    font-family: 'museo-sans', serif;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-bottom: 16px;
+    color: #878787;
+  }
+  .launch-share-dialog {
+    @include border-radius(8px);
+
+    display: block;
+    text-align: center;
+    line-height: 48px;
+    color: white;
+    font-size: 16px;
+
+    &.share-fb {
+      background: $facebook-blue;
+
+      &:hover {
+        background: darken($facebook-blue, 10%);
+        color: white;
+      }
+    }
+
+    &.share-twitter {
+      background: $twitter-blue;
+
+      &:hover {
+        background: darken($twitter-blue, 10%);
+        color: white;
+      }
+    }
+  }
+}

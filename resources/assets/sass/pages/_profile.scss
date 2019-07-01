@@ -1,0 +1,532 @@
+#profile {
+  h1 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  /* Voting Module
+   ========================================================================== */
+  .voting-module {
+    .voting-headline {
+      margin-top: -8px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+
+      @media screen and (min-width: 768px){
+        margin-top: -16px;
+        align-items: inherit;
+        margin-bottom: 8px;
+      }
+
+      h2 {
+        font-size: 14px;
+        font-weight: 700;
+        padding: 0 16px;
+
+        @media screen and (min-width: 600px){
+          font-size: 16px;
+        }
+      }
+      .lightning-bolt {
+        height: 32px;
+
+        @media screen and (min-width: 768px){
+          height: 48px;
+        }
+
+        &.left {
+          @include transform(rotate(90deg));
+
+          @media screen and (min-width: 768px) {
+            margin-left: 8px;
+          }
+        }
+        &.right {
+          @include transform(scaleX(-1) rotate(90deg));
+
+          @media screen and (min-width: 768px) {
+            margin-right: 8px;
+          }
+        }
+      }
+      .force-left {
+        flex-grow: unset;
+
+        @media screen and (min-width: 768px) {
+          flex-grow: inherit;
+          justify-content: flex-start;
+        }
+      }
+      .level-item.has-text-centered {
+        flex: 1;
+      }
+      .force-right {
+        flex-grow: unset;
+
+        @media screen and (min-width: 768px) {
+          flex-grow: inherit;
+          justify-content: flex-end;
+        }
+      }
+    }
+    .voting-window {
+      position: relative;
+
+      .voting-module-cover {
+        @include positionAbsolute($top: 32px, $left: 4px, $bottom: 4px, $right: 4px);
+        @include transition($prop: opacity, $time: 0.3s);
+
+        background: rgba($myspace-blue, 0.75);
+        font-weight: 700;
+        color: white;
+        font-size: 16px;
+        text-align: center;
+        padding-top: 40px;
+        opacity: 0;
+        visibility: hidden;
+
+        &.reveal-cover {
+          opacity: 1;
+          visibility: visible;
+          z-index: 11;
+        }
+      }
+      header {
+        background: $fearless-blue;
+        margin-bottom: 0;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        height: 32px;
+
+        h3 {
+          padding-left: 8px;
+          color: white;
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        .close-voting-window-btn {
+          @include transition($prop: all, $time: 0.3s);
+          @include border-radius(4px);
+
+          background: darken($fearless-blue, 10%);
+          border: none;
+          outline: none;
+          cursor: pointer;
+          color: rgba(white, 0.7);
+          height: 26px;
+          width: 72px;
+          margin-right: 4px;
+          text-align: center;
+
+          &:hover {
+            color: white;
+            background: darken($fearless-blue, 5%);
+          }
+        }
+      }
+      ul {
+        @include transition($prop: margin, $time: 0.2s);
+
+        background: #113679;
+        background-image: linear-gradient(180deg, #2459B8 0%, #1A4189 94%, #113679 100%);
+        border: 4px solid $fearless-blue;
+        border-top: 0;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        padding: 16px;
+
+        &.hide-list {
+          margin-top: -294px;
+
+          @media screen and (min-width: 769px) {
+            margin-top: -139px;
+          }
+        }
+
+        @media screen and (min-width: 768px) {
+          padding: 16px 8px;
+        }
+
+        li {
+          @include border-radius(4px);
+
+          background: rgba(black, 0.19);
+          position: relative;
+          height: 48px;
+          margin-bottom: 4px;
+
+          &:hover > .voting-icon.fa-square {
+            display: none;
+          }
+          &:hover > .voting-icon.fa-check-square {
+            display: inline-block;
+          }
+          &.selected-band {
+            @media screen and (max-width: 768px) {
+              height: 105px;
+              margin-bottom: 0;
+
+              .voting-label {
+                @include positionAbsolute($top: 50%, $left: 50%, $bottom: auto, $right: auto);
+                @include transform(translate(-50%, -50%));
+
+                width: 100% !important;
+                text-align: center !important;
+                padding: 16px !important;
+              }
+
+              .voting-image {
+                @include positionAbsolute($cover: true);
+
+                width: auto;
+                opacity: 0.4;
+              }
+            }
+          }
+
+          @media screen and (min-width: 769px) {
+            height: 105px;
+            margin: 0 8px;
+            flex: 1;
+          }
+
+          .voting-link {
+            @include positionAbsolute($cover: true);
+            @include transition($prop: border, $time: 0.3s);
+
+            z-index: 10;
+            border: none;
+
+            &:hover {
+              border: 4px solid $fearless-blue;
+            }
+            &:hover + .voting-image {
+              @media screen and (min-width: 769px) {
+                opacity: 0.7;
+              }
+            }
+          }
+          .voting-image {
+            @include positionAbsolute($top: 0, $left: 0, $bottom: 0);
+
+            width: 75px;
+            z-index: 8;
+            background-repeat: no-repeat;
+            background-position: center center;
+
+            -webkit-background-size: cover;
+            background-size: cover;
+
+            @media screen and (min-width: 769px){
+              @include positionAbsolute($cover: true);
+
+              width: auto;
+              opacity: 0.4;
+
+              &.grayscale.reposition {
+                background-position: center -95px;
+              }
+              &.dance-gavin-dance.reposition {
+                background-position: center -150px;
+              }
+              &.underoath.reposition {
+                background-position: center -150px;
+              }
+              &.don-broco.reposition {
+                background-position: center -150px;
+              }
+              &.circa-survive.reposition {
+                background-position: center -120px;
+              }
+            }
+          }
+          .voting-label {
+            @include positionAbsolute($top: 13px, $left: 91px, $bottom: 0, $right: 0);
+
+            color: white;
+            z-index: 9;
+            font-size: 16px;
+            text-transform: uppercase;
+
+            .voting-label-results {
+              font-size: 12px;
+              text-transform: initial;
+              font-weight: 700;
+            }
+
+            @media screen and (min-width: 769px) {
+              @include positionAbsolute($top: 50%, $left: 50%, $bottom: auto, $right: auto);
+              @include transform(translate(-50%, -50%));
+
+              width: 100%;
+              text-align: center;
+              padding: 16px;
+            }
+          }
+          .voting-icon {
+            @include positionAbsolute($right: 16px, $top: 16px);
+
+            color: white;
+            z-index: 9;
+            font-size: 16px;
+
+            &.fa-square {
+              display: inline-block;
+            }
+            &.fa-check-square {
+              display: none;
+            }
+
+            @media screen and (min-width: 769px) {
+              @include positionAbsolute($bottom: 0, $left: 0, $right: 0, $top: auto);
+
+              width: 100%;
+              padding-bottom: 8px;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* Profile
+   ========================================================================== */
+  .profile {
+    margin-bottom: 16px;
+
+    .columns {
+      margin-bottom: 6px;
+
+      .profile-left {
+        padding-right: 16px;
+
+        @media screen and (max-width: 768px) {
+          max-width: 50%;
+        }
+
+        .profile-image {
+          text-align: center;
+
+          img {
+            width: 100%;
+            max-width: 254px;
+            margin: 0 auto;
+          }
+
+          @media screen and (min-width: 769px) {
+            width: 158px;
+          }
+        }
+      }
+
+      .profile-right {
+        padding-left: 0;
+
+        .online-now {
+          color: #01AA00;
+          font-size: 9px;
+          font-weight: 700;
+          margin: 8px 0;
+
+          i {
+            color: $myspace-orange;
+            font-size: 18px;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+
+    .mood-and-links {
+      .fas {
+        font-size: 18px;
+      }
+
+      .fa-smile-beam {
+        color: #ffff00;
+      }
+
+      a {
+        color: $myspace-blue;
+        font-weight: 700;
+      }
+    }
+  }
+
+  /* Profile Connect Block
+   ========================================================================== */
+  .connect-block {
+    li {
+      width: 50%;
+      float: left;
+
+      a {
+        line-height: 32px;
+        color: $myspace-blue;
+        font-size: 10px;
+        font-weight: 700;
+
+        i {
+          font-size: 20px;
+          margin-right: 8px;
+        }
+
+        .fa-envelope, .fa-share-square {
+          color: #575757;
+        }
+
+        .fa-facebook-square {
+          color: #3C5A99;
+        }
+
+        .fa-twitter {
+          color: $twitter-blue;
+        }
+
+        .fa-instagram {
+          background: #d6249f;
+          background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .fa-spotify {
+          color: #1DB954;
+        }
+
+        .fa-itunes-note {
+          background: #fa57c1;
+          background: radial-gradient(circle at 30% 107%, #fa57c1 0%, #b166cc 5%, #7572ff 45%, #69a6f9 60%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+    }
+  }
+
+  /* Profile Link Display
+   ========================================================================== */
+  .profile-link-display {
+    border: 1px solid $myspace-light-blue;
+    margin-bottom: 16px;
+    padding: 7px;
+
+    strong {
+      display: block;
+    }
+  }
+
+  /* Profile Details Table
+   ========================================================================== */
+  .details-table {
+    font-size: 11px;
+    line-height: 18px;
+
+    li {
+      margin-bottom: 6px;
+    }
+    li:last-child, li:nth-last-child(2) {
+      margin-bottom: 0;
+    }
+
+    .th {
+      background: #B1D0F0;
+      color: #336699;
+      font-weight: 700;
+      padding: 0 8px;
+      margin: 0;
+
+      @media screen and (min-width: 769px) {
+        float: left;
+        width: 84px;
+        margin: 0 6px 0 0;
+      }
+    }
+    .td {
+      background: #D5E8FB;
+      padding: 0 8px;
+
+
+      @media screen and (min-width: 769px) {
+        float: left;
+        width: 174px;
+      }
+    }
+  }
+
+  /* Spotify Playlist
+   ========================================================================== */
+  .spotify-playlist {
+    margin-bottom: 16px;
+
+    iframe {
+      height: 248px;
+    }
+  }
+
+  /*  Blog Roll
+   ========================================================================== */
+  .blog-roll {
+    margin-bottom: 16px;
+
+    ul {
+      margin: 16px 0;
+
+      li {
+        line-height: 24px;
+      }
+    }
+
+    a {
+      font-weight: 700;
+      color: $myspace-blue;
+    }
+  }
+
+  /*  About Me
+   ========================================================================== */
+  .about-me-title {
+    color: $myspace-orange;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 16px;
+  }
+
+  /*  Top 12 Block
+   ========================================================================== */
+  .top-12-block {
+    li {
+      width: 50%;
+      float: left;
+
+      @media screen and (min-width: 469px) {
+        width: 33.33333333333%;
+      }
+
+      @media screen and (min-width: 769px) {
+        width: 25%;
+      }
+
+      a {
+        display: block;
+        padding: 4px;
+        font-size: 10px;
+        font-weight: 700;
+        color: $myspace-blue;
+
+        span {
+          display: block;
+          margin-bottom: 4px;
+
+          @media screen and (min-width: 469px) {
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+}

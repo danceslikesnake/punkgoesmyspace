@@ -1,0 +1,68 @@
+#footer {
+  background: #FFFFFF;
+  width: 100%;
+  box-shadow: 0 0 8px 4px rgba(0,0,0,0.08);
+  padding-bottom: 32px;
+
+  @media screen and (min-width: 769px) {
+    @include positionFixed(null, null, 0, 0);
+
+    z-index: 1000;
+    height: 56px;
+    padding-bottom: 0;
+  }
+
+  .level {
+    margin-bottom: 16px;
+
+    @media screen and (min-width: 769px) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .fearless-brand {
+    padding: 0 16px 0 24px;
+    height: 32px;
+  }
+
+  .copyright {
+    color: #878787;
+    font-size: 12px;
+    font-family: museo-sans, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .social-links {
+    a {
+      display: inline-block;
+      width: 56px;
+      line-height: 56px;
+      text-align: center;
+      font-size: 18px;
+      color: $fearless-blue;
+      margin-bottom: 0;
+
+      @media screen and (min-width: 769px) {
+        display: block;
+      }
+    }
+  }
+
+  .newsletter-link {
+    width: 56px;
+    height: 56px;
+    padding-top: 8px;
+
+    @media screen and (min-width: 769px) {
+      @include positionFixed(null, null, 0, 50%);
+      @include transform(translateX(-50%));
+
+      display: block;
+    }
+
+    img {
+      height: 40px;
+    }
+  }
+}

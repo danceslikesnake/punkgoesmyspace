@@ -1,0 +1,67 @@
+#photos {
+  .adjust-subheader-margin {
+    margin-bottom: -16px;
+  }
+  .photo-display {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .photo-share {
+    font-size: 12px;
+
+    a {
+      font-weight: 700;
+      color: $myspace-blue;
+
+      i {
+        font-size: 18px;
+        margin-right: 8px;
+      }
+      .fa-facebook-square {
+        color: $facebook-blue;
+      }
+      .fa-twitter {
+        color: $twitter-blue;
+      }
+    }
+  }
+  .photo-url-input {
+    input {
+      width: 80%;
+    }
+  }
+  .other-albums-list {
+    margin-bottom: 16px;
+
+    a {
+      color: $myspace-blue;
+    }
+    .other-album-link {
+      display: block;
+      background: #e5e5e5;
+      padding: 8px;
+
+      .other-album-cover {
+        position: relative;
+        width: 100%;
+        display: block;
+
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+      .other-album-cover:before {
+        content: "";
+        display: block;
+        padding-top: 75%;
+      }
+    }
+  }
+  .other-albums-footer {
+    a {
+      color: $myspace-blue;
+      font-weight: 700;
+    }
+  }
+}

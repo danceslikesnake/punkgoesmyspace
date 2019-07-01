@@ -1,0 +1,71 @@
+
+// Body
+$body-bg: #f5f8fa;
+
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: $laravel-border-color;
+$panel-default-border: $laravel-border-color;
+$panel-inner-border: $laravel-border-color;
+
+// Brands
+$brand-primary: #3097D1;
+$brand-info: #8eb4cb;
+$brand-success: #2ab27b;
+$brand-warning: #cbb956;
+$brand-danger: #bf5329;
+
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-family-sans-serif: "Raleway", sans-serif;
+$font-size-base: 14px;
+$line-height-base: 1.6;
+$text-color: #636b6f;
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Buttons
+$btn-default-color: $text-color;
+
+// Inputs
+$input-border: lighten($text-color, 40%);
+$input-border-focus: lighten($brand-primary, 25%);
+$input-color-placeholder: lighten($text-color, 30%);
+
+// Panels
+$panel-default-heading-bg: #fff;
+
+// MySpace Colors
+$myspace-blue: #2358B8;
+$myspace-light-blue: #6699CC;
+$myspace-orange: #FF6600;
+$myspace-light-orange: #FFCC99;
+
+// Brand colors
+$facebook-blue: #3C5A99;
+$twitter-blue: #1DA1F2;
+$spotify-green: #1DB954;
+$fearless-blue: #03AEEF;
+
+$cms-blue: #007bff;
+$cms-indigo: #6610f2;
+$cms-purple: #6f42c1;
+$cms-pink: #e83e8c;
+$cms-red: #dc3545;
+$cms-orange: #fd7e14;
+$cms-yellow: #ffc107;
+$cms-green: #28a745;
+$cms-teal: #20c997;
+$cms-cyan: #17a2b8;
+$cms-gray: #6c757d;
+$cms-gray-dark: #343a40;
+$cms-primary: #5867dd;
+$cms-secondary: #e1e1ef;
+$cms-success: #0abb87;
+$cms-info: #5578eb;
+$cms-warning: #ffb822;
+$cms-danger: #fd397a;
+$cms-light: #f8f9fa;
+$cms-dark: #343a40;

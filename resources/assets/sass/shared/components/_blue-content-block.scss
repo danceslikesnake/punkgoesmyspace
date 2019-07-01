@@ -1,0 +1,17 @@
+.blue-content-block {
+  border: 2px solid $myspace-light-blue;
+  margin-bottom: 16px;
+
+  h3 {
+    background: $myspace-light-blue;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 22px;
+    padding-left: 8px;
+  }
+
+  .content-wrapper {
+    padding: 6px;
+  }
+}

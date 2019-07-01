@@ -1,0 +1,71 @@
+#albums {
+  .album-list {
+    .album-list-item {
+
+      @media screen and (max-width: 599px) {
+        width: 100%;
+      }
+
+      a {
+        display: block;
+        color: black;
+
+        .album-cover-image {
+          @include box-shadow(0, 0, 1px, $myspace-light-blue);
+
+          border: 8px solid white;
+          position: relative;
+          width: 100%;
+          display: block;
+          margin-bottom: 8px;
+
+          -webkit-background-size: cover;
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-color: $myspace-light-blue;
+        }
+
+        .album-cover-image:before {
+          content: "";
+          display: block;
+          padding-top: 75%;
+        }
+
+        strong {
+          color: $myspace-blue;
+        }
+      }
+    }
+  }
+
+  .album-photo-list {
+    .album-photo-list-item {
+      @media screen and (max-width: 599px) {
+        width: 100%;
+      }
+
+      a {
+        position: relative;
+
+        .photo-cover {
+          position: relative;
+          width: 100%;
+          display: block;
+
+          -webkit-background-size: cover;
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-color: $myspace-light-blue;
+        }
+
+        .photo-cover:before {
+          content: "";
+          display: block;
+          padding-top: 75%;
+        }
+      }
+    }
+  }
+}

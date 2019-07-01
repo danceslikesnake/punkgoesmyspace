@@ -1,0 +1,49 @@
+#blogs {
+  .adjust-subheader-margin {
+    margin-bottom: -16px;
+  }
+  .blog-profile {
+    padding: 0 0 8px 0;
+    a {
+      font-weight: 700;
+      color: $myspace-blue;
+    }
+
+    .blog-profile-image {
+      margin-bottom: -8px;
+    }
+
+    .address {
+      margin: 8px 0;
+    }
+  }
+
+  .blog-post {
+    background: #B1CFF0;
+    padding: 16px;
+    margin-bottom: 16px;
+
+    .blog-date {
+      display: block;
+    }
+    .blog-content {
+      padding: 16px;
+
+      h4 {
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+
+      p {
+        margin-bottom: 16px;
+      }
+      .content-footer {
+        font-weight: 700;
+
+        a {
+          color: $myspace-blue;
+        }
+      }
+    }
+  }
+}

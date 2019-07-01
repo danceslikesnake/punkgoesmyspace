@@ -1,0 +1,60 @@
+.section-titleheader {
+  border-top: 1px solid $myspace-blue;
+  background: #E4F0FC;
+
+  h3 {
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+
+    @media screen and (min-width: 769px) {
+      padding-left: 8px;
+    }
+  }
+
+  .prev-next-mobile {
+    @media screen and (max-width: 768px) {
+      margin-top: 0;
+      padding-bottom: 8px;
+    }
+  }
+
+  .titleheader-links {
+    @media screen and (min-width: 769px) {
+      padding-right: 8px;
+    }
+
+    a {
+      font-weight: 700;
+      color: $myspace-blue;
+    }
+  }
+}
+.section-titleheader.level {
+  margin-bottom: 16px;
+
+  .level-left {
+    @media screen and (min-width: 769px){
+      width: 75%;
+    }
+
+    .level-item {
+      @media screen and (min-width: 769px){
+        justify-content: flex-start;
+        width: 100%;
+      }
+
+      h3 {
+        text-align: center;
+
+        @media screen and (min-width: 769px){
+          width: 95%;
+          text-align: left;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null, $cover: false, $center: false) {
+  position: $position;
+  top: if($cover, 0, $top);
+  right: if($cover, 0, $right);
+  bottom:if($cover, 0, $bottom);
+  left: if($cover, 0, $left);
+
+  @if $center {
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+@mixin positionAbsolute($args...) {
+  @include position(absolute, $args...);
+}
+
+@mixin positionRelative($args...) {
+  @include position(relative, $args...);
+}
+
+@mixin positionFixed($args...) {
+  @include position(fixed, $args...);
+}
+
+@mixin transition($prop, $time, $easing: ease, $delay: 0s) {
+  -webkit-transition: $prop $time $easing $delay;
+  -moz-transition: $prop $time $easing $delay;
+  -ms-transition: $prop $time $easing $delay;
+  -o-transition: $prop $time $easing $delay;
+  transition: $prop $time $easing $delay;
+}
+
+@mixin transform($method) {
+  -webkit-transform: $method;
+  -moz-transform: $method;
+  -ms-transform: $method;
+  -o-transform: $method;
+  transform: $method;
+}
+
+@mixin border-radius($amount) {
+  -webkit-border-radius: $amount;
+  -moz-border-radius: $amount;
+  border-radius: $amount;
+}
+
+@mixin background-gradient($start-color, $end-color, $orientation) {
+  background: $start-color;
+
+  @if $orientation == 'vertical' {
+    background: -webkit-linear-gradient(top, $start-color, $end-color);
+    background: linear-gradient(to bottom, $start-color, $end-color);
+  } @else if $orientation == 'horizontal' {
+    background: -webkit-linear-gradient(left, $start-color, $end-color);
+    background: linear-gradient(to right, $start-color, $end-color);
+  } @else {
+    background: -webkit-radial-gradient(center, ellipse cover, $start-color, $end-color);
+    background: radial-gradient(ellipse at center, $start-color, $end-color);
+  }
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin vertical-center {
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
