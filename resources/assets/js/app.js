@@ -204,24 +204,27 @@ $(document).ready(function() {
         }
     });
 
-    $( "#sortable" ).sortable({
-        stop: function(event, ui) {
-            let sorted = $(this).sortable('toArray').toString();
-            console.log(sorted);
-            $.ajax({
-                type: "POST",
-                url: $('#ajax-sort-url').attr('data-route'),
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="sort-csrf-token"]').attr('content')
-                },
-                data: {
-                    'sorted_items': sorted
-                },
-            }).done(function( msg ) {
-                console.log(msg);
-            }).fail(function(msg) {
-                console.log(msg.responseText);
-            });
-        }
-    });
+    if($("#sortable").length) {
+        alert('yes');
+        $("#sortable").sortable({
+            stop: function(event, ui) {
+                let sorted = $(this).sortable('toArray').toString();
+                console.log(sorted);
+                $.ajax({
+                    type: "POST",
+                    url: $('#ajax-sort-url').attr('data-route'),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="sort-csrf-token"]').attr('content')
+                    },
+                    data: {
+                        'sorted_items': sorted
+                    },
+                }).done(function( msg ) {
+                    console.log(msg);
+                }).fail(function(msg) {
+                    console.log(msg.responseText);
+                });
+            }
+        });
+    }
 });

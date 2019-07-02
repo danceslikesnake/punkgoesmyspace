@@ -74,6 +74,14 @@
         border-right: 1px solid #1B4591;
       }
 
+      &.edit-profile {
+        background-image: linear-gradient(180deg, #FF70B2 0%, #E83E8C 10%, #B82368 94%, #5A0F31 100%);
+
+        &:hover {
+          background: #B82368;
+        }
+      }
+
       &:hover {
         background: #1548AE;
       }

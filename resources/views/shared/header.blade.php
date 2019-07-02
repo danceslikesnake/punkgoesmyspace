@@ -9,7 +9,7 @@
     <nav class="navbar nav-controls" role="navigation" aria-label="header controls">
         <div class="navbar-menu is-active is-flex-touch is-paddingless is-backgroundless">
             <div class="navbar-start is-flex-touch" style="height: 41px; width: 100%;">
-                <img src="{{ asset('img/mainlogo.svg') }}" alt="punk goes acoustic - a place for friends" height="28" width="203" />
+                <a href="{{ url('/') }}" style="display: inherit;"><img src="{{ asset('img/mainlogo.svg') }}" alt="punk goes acoustic - a place for friends" height="28" width="203" /></a>
             </div>
             <div class="navbar-end is-flex-touch">
                 <div class="navbar-item is-flush-right-on-mobile">
@@ -21,7 +21,11 @@
     <nav class="navbar nav-links" role="navigation" aria-label="main navigation">
         <div class="navbar-menu is-active is-flex-touch is-paddingless is-backgroundless">
             <div class="navbar-start is-flex-touch">
+                @if(Request::is('/'))
+                <a class="navbar-item add-border edit-profile" href="{{ url('profile/edit/content') }}"><i class="fas fa-cog"></i>&nbsp;Edit Profile</a>
+                @else
                 <a class="navbar-item add-border" href="{{ url('/') }}">Profile</a>
+                @endif
                 <a class="navbar-item add-border" href="{{ url('albums') }}">Photos</a>
                 <a class="navbar-item add-border" href="{{ url('music_videos') }}">Videos</a>
                 <a class="navbar-item add-border" href="{{ url('blogs') }}">Blogs</a>
