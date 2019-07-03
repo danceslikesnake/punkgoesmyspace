@@ -14,6 +14,87 @@
       -webkit-box-shadow: 4px 0 8px 4px rgba(35,88,184,0.09);
       -moz-box-shadow: 4px 0 8px 4px rgba(35,88,184,0.09);
       box-shadow: 4px 0 8px 4px rgba(35,88,184,0.09);
+
+      h2 {
+        line-height: 56px;
+        font-size: 16px;
+        font-weight: 700;
+        border-bottom: 1px solid #F0F6FF;
+        margin-bottom: 16px;
+
+        i {
+          color: #E63D8A;
+        }
+      }
+
+      p {
+        padding: 0 16px;
+        margin-bottom: 16px;
+      }
+
+      .custom-url-module {
+        padding-bottom: 16px;
+        border-bottom: 1px solid #F0F6FF;
+
+        label {
+          display: block;
+          margin-bottom: 8px;
+          font-weight: 700;
+        }
+        input {
+          @include border-radius(12px);
+
+          width: 208px;
+          margin: 0 0 0 16px;
+          font-size: 12px;
+          line-height: 24px;
+          background: rgba(35,88,184,0.15);
+          box-shadow: inset 0 0 4px 2px rgba(35,88,184,0.15);
+          border: none;
+          outline: none;
+          padding: 0 16px;
+
+          -webkit-user-select: all;
+          -moz-user-select: all;
+          -ms-user-select: all;
+          user-select: all;
+
+          &::selection {
+            background: #E63D8A;
+            color: white;
+          }
+        }
+        input:focus {
+          background: rgba(35,88,184,0.25);
+
+          -webkit-user-select: all;
+          -moz-user-select: all;
+          -ms-user-select: all;
+          user-select: all;
+        }
+      }
+
+      ul {
+        li {
+          a {
+            line-height: 40px;
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: $myspace-blue;
+            padding-left: 16px;
+
+            &:hover {
+              background: rgba(#2358B8, 0.14);
+            }
+
+            &.active-link {
+              border-right: 4px solid $myspace-blue;
+              background: rgba(#2358B8, 0.07);
+            }
+          }
+        }
+      }
     }
 
     .editor-style-options {
@@ -21,6 +102,7 @@
 
       width: 25%;
       background: white;
+      overflow-y: auto;
 
       border-right: 1px solid #F2F3F4;
     }
@@ -86,6 +168,10 @@
           margin-bottom: 16px;
           color: #646C9D;
 
+          &:last-child {
+            margin-bottom: 0;
+          }
+
           header {
             border-bottom: 1px solid #F2F3F4;
             margin-bottom: 1.5rem;
@@ -104,16 +190,66 @@
 
             label {
               font-size: 11px;
-              font-weight: 400;
+              font-weight: 700;
               color: #646C9D;
             }
-            .input {
-              color: #495057;
-              border: 1px solid #e2e5ec;
-              font-size: 12px;
+
+            .editor-profile-image-preview {
+              width: 56px;
+              height: 56px;
+            }
+
+            .control {
+              font-size: 11px;
+
+              .is-prefix-text {
+                line-height: 27px;
+                display: inline-block;
+                margin-right: 4px;
+              }
+
+              .is-emoji {
+                height: 24px;
+              }
+
+              .input, .textarea {
+                color: #495057;
+                border: 1px solid #e2e5ec;
+                font-size: 12px;
+
+                &.natural-width {
+                  width: auto;
+                }
+              }
+
+              .textarea {
+                min-height: 96px;
+              }
             }
           }
         }
+      }
+    }
+
+    .editor-style-canvas {
+      @include positionAbsolute($top: 57px, $left: 50%, $bottom: 0);
+
+      width: 50%;
+      background: #ffffff;
+
+      h4 {
+        font-weight: 700;
+        color: rgba($myspace-blue, 0.5);
+        line-height: 32px;
+      }
+
+      .editor-style-canvas-content {
+        background: white;
+        margin: 0 8px;
+        border-left: 81px solid #e5e5e5;
+        border-right: 81px solid #e5e5e5;
+        height: 385px;
+        position: relative;
       }
     }
   }

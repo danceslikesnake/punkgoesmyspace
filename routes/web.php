@@ -24,6 +24,7 @@ Route::post('cast_vote', 'AlbumSingleVotesController@cast_vote');
 
 Route::get('profile/edit/content', 'CustomThemesController@profile_content');
 Route::get('profile/edit/styles', 'CustomThemesController@profile_styles');
+Route::get('profile/edit/toptwelve', 'CustomThemesController@profile_toptwelve');
 
 /**
  * ADMIN ROUTES

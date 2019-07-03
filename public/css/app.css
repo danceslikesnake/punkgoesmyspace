@@ -13985,6 +13985,88 @@ label.panel-block:hover {
   box-shadow: 4px 0 8px 4px rgba(35, 88, 184, 0.09);
 }
 
+#profile_editor .editor-wrapper .editor-navigation h2 {
+  line-height: 56px;
+  font-size: 16px;
+  font-weight: 700;
+  border-bottom: 1px solid #F0F6FF;
+  margin-bottom: 16px;
+}
+
+#profile_editor .editor-wrapper .editor-navigation h2 i {
+  color: #E63D8A;
+}
+
+#profile_editor .editor-wrapper .editor-navigation p {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+#profile_editor .editor-wrapper .editor-navigation .custom-url-module {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #F0F6FF;
+}
+
+#profile_editor .editor-wrapper .editor-navigation .custom-url-module label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+#profile_editor .editor-wrapper .editor-navigation .custom-url-module input {
+  border-radius: 12px;
+  width: 208px;
+  margin: 0 0 0 16px;
+  font-size: 12px;
+  line-height: 24px;
+  background: rgba(35, 88, 184, 0.15);
+  -webkit-box-shadow: inset 0 0 4px 2px rgba(35, 88, 184, 0.15);
+          box-shadow: inset 0 0 4px 2px rgba(35, 88, 184, 0.15);
+  border: none;
+  outline: none;
+  padding: 0 16px;
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+}
+
+#profile_editor .editor-wrapper .editor-navigation .custom-url-module input::-moz-selection {
+  background: #E63D8A;
+  color: white;
+}
+
+#profile_editor .editor-wrapper .editor-navigation .custom-url-module input::selection {
+  background: #E63D8A;
+  color: white;
+}
+
+#profile_editor .editor-wrapper .editor-navigation .custom-url-module input:focus {
+  background: rgba(35, 88, 184, 0.25);
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+}
+
+#profile_editor .editor-wrapper .editor-navigation ul li a {
+  line-height: 40px;
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2358B8;
+  padding-left: 16px;
+}
+
+#profile_editor .editor-wrapper .editor-navigation ul li a:hover {
+  background: rgba(35, 88, 184, 0.14);
+}
+
+#profile_editor .editor-wrapper .editor-navigation ul li a.active-link {
+  border-right: 4px solid #2358B8;
+  background: rgba(35, 88, 184, 0.07);
+}
+
 #profile_editor .editor-wrapper .editor-style-options {
   position: absolute;
   top: 57px;
@@ -13992,6 +14074,7 @@ label.panel-block:hover {
   left: 25%;
   width: 25%;
   background: white;
+  overflow-y: auto;
   border-right: 1px solid #F2F3F4;
 }
 
@@ -14063,6 +14146,10 @@ label.panel-block:hover {
   color: #646C9D;
 }
 
+#profile_editor .editor-wrapper .editor-content .form .form-module:last-child {
+  margin-bottom: 0;
+}
+
 #profile_editor .editor-wrapper .editor-content .form .form-module header {
   border-bottom: 1px solid #F2F3F4;
   margin-bottom: 1.5rem;
@@ -14082,14 +14169,67 @@ label.panel-block:hover {
 
 #profile_editor .editor-wrapper .editor-content .form .form-module .field label {
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 700;
   color: #646C9D;
 }
 
-#profile_editor .editor-wrapper .editor-content .form .form-module .field .input {
+#profile_editor .editor-wrapper .editor-content .form .form-module .field .editor-profile-image-preview {
+  width: 56px;
+  height: 56px;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .field .control {
+  font-size: 11px;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .is-prefix-text {
+  line-height: 27px;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .is-emoji {
+  height: 24px;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .input,
+#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .textarea {
   color: #495057;
   border: 1px solid #e2e5ec;
   font-size: 12px;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .input.natural-width,
+#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .textarea.natural-width {
+  width: auto;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .textarea {
+  min-height: 96px;
+}
+
+#profile_editor .editor-wrapper .editor-style-canvas {
+  position: absolute;
+  top: 57px;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  background: #ffffff;
+}
+
+#profile_editor .editor-wrapper .editor-style-canvas h4 {
+  font-weight: 700;
+  color: rgba(35, 88, 184, 0.5);
+  line-height: 32px;
+}
+
+#profile_editor .editor-wrapper .editor-style-canvas .editor-style-canvas-content {
+  background: white;
+  margin: 0 8px;
+  border-left: 81px solid #e5e5e5;
+  border-right: 81px solid #e5e5e5;
+  height: 385px;
+  position: relative;
 }
 
 html,
