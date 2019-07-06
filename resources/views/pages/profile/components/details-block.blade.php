@@ -4,8 +4,15 @@
     @endslot
 
     <ul class="details-table is-clearfix">
-        @foreach($profile->details as $detail)
+        @if(!empty($custom_theme['content']['details']))
+            @foreach($custom_theme['content']['details'] as $key => $val)
+            <li class="th" style="clear: both;">{{ucwords(str_replace('_', ' ', $key))}}</li>
+            <li class="td">{{$val}}</li>
+            @endforeach
+        @else
+            @foreach($profile->details as $detail)
             <li class="th">{!! str_replace('::', '</li><li class="td">', $detail)!!}</li>
-        @endforeach
+            @endforeach
+        @endif
     </ul>
 @endcomponent

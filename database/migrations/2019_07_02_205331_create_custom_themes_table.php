@@ -16,9 +16,9 @@ class CreateCustomThemesTable extends Migration
         Schema::create('custom_themes', function (Blueprint $table) {
             $table->increments('id');
             $table->mediumText('cookie_id');
-            $table->string('custom_url');
-            $table->mediumText('profile_content');
-            $table->mediumText('profile_theme');
+            $table->string('custom_url')->nullable();
+            $table->mediumText('profile_content')->nullable();
+            $table->mediumText('profile_theme')->nullable();
             $table->timestamps();
         });
     }

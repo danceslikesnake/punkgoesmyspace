@@ -22,7 +22,7 @@
         <div class="navbar-menu is-active is-flex-touch is-paddingless is-backgroundless">
             <div class="navbar-start is-flex-touch">
                 @if(Request::is('/'))
-                <a class="navbar-item add-border edit-profile" href="{{ url('profile/edit/content') }}"><i class="fas fa-cog"></i>&nbsp;Edit Profile</a>
+                <a class="navbar-item add-border edit-profile" href="{{ url('profile/edit/custom_url') }}"><i class="fas fa-cog"></i>&nbsp;Edit Profile</a>
                 @else
                 <a class="navbar-item add-border" href="{{ url('/') }}">Profile</a>
                 @endif

@@ -1,6 +1,6 @@
 @component('shared.components.blue-content-block')
     @slot('title')
-        Connecting With Punk Goes
+        Connecting With {{($custom_theme['content']['name'] != '') ? $custom_theme['content']['name'] : 'Punk Goes'}}
     @endslot
 
     <ul class="connect-block is-clearfix">

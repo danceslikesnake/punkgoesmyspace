@@ -4,6 +4,70 @@
     background: #F0F6FF;
     min-height: calc(100vh - 170px);
 
+    .field {
+      padding: 0 16px 16px 16px;
+      margin-bottom: 0;
+
+      label {
+        font-size: 11px;
+        font-weight: 700;
+        color: #646C9D;
+      }
+
+      .editor-profile-image-preview {
+        width: 56px;
+        height: 56px;
+      }
+
+      .control {
+        font-size: 11px;
+
+        .is-prefix-text {
+          line-height: 27px;
+          display: inline-block;
+          margin-right: 4px;
+        }
+
+        .is-emoji {
+          height: 24px;
+        }
+
+        .input, .textarea {
+          color: #495057;
+          border: 1px solid #e2e5ec;
+          font-size: 12px;
+
+          &.natural-width {
+            width: auto;
+          }
+        }
+
+        .textarea {
+          min-height: 96px;
+        }
+
+        .inline-button {
+          @include border-radius(13px);
+
+          line-height: 24px;
+          border: 1px solid #E63D8A;
+          color: #E63D8A;
+          font-weight: 700;
+          padding: 0 16px;
+          cursor: pointer;
+          outline: none;
+
+          &:hover {
+            background: rgba(#E63D8A, 0.05);
+          }
+        }
+      }
+
+      .help {
+        font-size: 11px;
+      }
+    }
+
     .editor-navigation {
       @include positionAbsolute($top: 0, $left: 0, $bottom: 0);
 
@@ -92,19 +156,13 @@
               border-right: 4px solid $myspace-blue;
               background: rgba(#2358B8, 0.07);
             }
+
+            i {
+              opacity: 0.5;
+            }
           }
         }
       }
-    }
-
-    .editor-style-options {
-      @include positionAbsolute($top: 57px, $left: 25%, $bottom: 0);
-
-      width: 25%;
-      background: white;
-      overflow-y: auto;
-
-      border-right: 1px solid #F2F3F4;
     }
 
     .editor-content {
@@ -133,6 +191,7 @@
           font-size: 12px;
           line-height: 24px;
           padding: 0 16px;
+          cursor: pointer;
 
           &.solid {
             background: #E63D8A;
@@ -159,6 +218,12 @@
       .form {
         padding: 0 1.5rem 1.5rem 1.5rem;
 
+        .divider-headline {
+          font-weight: 700;
+          color: rgba($myspace-blue, 0.5);
+          margin-bottom: 16px;
+        }
+
         .form-module {
           @include border-radius(4px);
 
@@ -172,6 +237,11 @@
             margin-bottom: 0;
           }
 
+          &.contains-preview {
+            padding-top: 16px;
+            padding-bottom: 16px;
+          }
+
           header {
             border-bottom: 1px solid #F2F3F4;
             margin-bottom: 1.5rem;
@@ -182,74 +252,56 @@
               color: #464457;
               line-height: 56px;
             }
-          }
 
-          .field {
-            padding: 0 16px 1.5rem 16px;
-            margin-bottom: 0;
+            .options-tabs {
+              border-bottom: 1px solid #F0F6FF;
 
-            label {
-              font-size: 11px;
-              font-weight: 700;
-              color: #646C9D;
-            }
+              li {
+                height: 56px;
+                cursor: pointer;
+                color: rgba(black, 0.25);
+                font-weight: 700;
+                border-bottom: 4px solid white;
 
-            .editor-profile-image-preview {
-              width: 56px;
-              height: 56px;
-            }
-
-            .control {
-              font-size: 11px;
-
-              .is-prefix-text {
-                line-height: 27px;
-                display: inline-block;
-                margin-right: 4px;
-              }
-
-              .is-emoji {
-                height: 24px;
-              }
-
-              .input, .textarea {
-                color: #495057;
-                border: 1px solid #e2e5ec;
-                font-size: 12px;
-
-                &.natural-width {
-                  width: auto;
+                &.active-tab {
+                  border-bottom: 4px solid #E63D8A;
+                  color: #E63D8A;
                 }
               }
+            }
+          }
 
-              .textarea {
-                min-height: 96px;
+          .options-group {
+            .columns {
+              padding-bottom: 16px;
+
+              .column {
+                padding-bottom: 0;
+
+                &:not(:nth-child(odd)) {
+                  padding-left: 0
+                }
               }
+            }
+          }
+
+          .editor-preview-canvas {
+            margin: 0 16px;
+            background: #e5e5e5;
+
+            .editor-preview-content {
+              background: white;
+              margin: 0 auto;
+              width: 301px;
+            }
+          }
+
+          .details-list {
+            strong {
+              color: #646C9D;
             }
           }
         }
-      }
-    }
-
-    .editor-style-canvas {
-      @include positionAbsolute($top: 57px, $left: 50%, $bottom: 0);
-
-      width: 50%;
-      background: #ffffff;
-
-      h4 {
-        font-weight: 700;
-        color: rgba($myspace-blue, 0.5);
-        line-height: 32px;
-      }
-
-      .editor-style-canvas-content {
-        background: white;
-        margin: 0 8px;
-        border-left: 81px solid #e5e5e5;
-        border-right: 81px solid #e5e5e5;
-        height: 385px;
-        position: relative;
       }
     }
   }

@@ -10,6 +10,7 @@ use App\Blog;
 use App\TopTwelve;
 use App\SpotifyPlaylist;
 use App\BannerAd;
+use App\CustomTheme;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -19,12 +20,23 @@ class ProfileController extends Controller
          * Check if we should show the voting module
          */
         $show_voting = false;
+        $custom_theme = null;
         if(isset($_COOKIE['pga_user_id'])) {
-            $user_id = $_COOKIE['pga_user_id'];
+            $encrypter = app(\Illuminate\Contracts\Encryption\Encrypter::class);
+            $user_id = $encrypter->decrypt($_COOKIE['pga_user_id']);
             $check_votes = AlbumSingleVote::where('cookie_id', '=', $user_id)->get();
             if(count($check_votes) > 0) {
                 $show_voting = false;
             }
+
+            $get_custom_theme = CustomTheme::where('cookie_id', '=', $user_id)->first();
+
+            $custom_theme = array(
+                'id' => $get_custom_theme->id,
+                'custom_url' => $get_custom_theme->custom_url,
+                'content' => json_decode($get_custom_theme->profile_content, true),
+                'spotify_uri' => $get_custom_theme->profile_spotify_embed
+            );
         }
 
         /**
@@ -52,7 +64,8 @@ class ProfileController extends Controller
             ->with('topTwelve', $topTwelve)
             ->with('spotifyPlayer', $spotifyPlayer)
             ->with('banner_ad', $banner_ad)
-            ->with('show_voting', $show_voting);
+            ->with('show_voting', $show_voting)
+            ->with('custom_theme', $custom_theme);
     }
 
     public function edit()

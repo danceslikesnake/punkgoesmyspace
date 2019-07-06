@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" href="https://use.typekit.net/dxe7xuy.css">
     <link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}" />
+    @if(isset($add_summernote))
+        <link rel="stylesheet" href="{{asset('css/summernote-lite.css')}}" />
+    @endif
     <link rel="stylesheet" href="{{asset('css/app.css')}}" />
 
     <link rel="apple-touch-icon" sizes="57x57" href="{{asset('apple-icon-57x57.png')}}">

@@ -82,7 +82,7 @@
             @endif
             <div class="columns">
                 <div class="column is-narrow main-left">
-                    <h1 class="has-text-centered-mobile">Punk Goes</h1>
+                    <h1 class="has-text-centered-mobile">{{($custom_theme['content']['name'] != '') ? $custom_theme['content']['name'] : 'Punk Goes'}}</h1>
                     @include('pages.profile.components.profile-block')
                     @include('pages.profile.components.connect-block')
 
@@ -95,7 +95,11 @@
                 </div>
                 <div class="column main-right">
                     <div class="spotify-playlist">
-                        {!! $spotifyPlayer->spotify_uri !!}
+                        @if(isset($custom_theme['spotify_uri']) && $custom_theme['spotify_uri'] != '')
+                            {!! $custom_theme['spotify_uri'] !!}
+                        @else
+                            {!! $spotifyPlayer->spotify_uri !!}
+                        @endif
                     </div>
                     @include('pages.profile.components.blog-roll')
                     @include('pages.profile.components.about-me')

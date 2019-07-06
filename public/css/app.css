@@ -13179,8 +13179,6 @@ label.panel-block:hover {
    ========================================================================== */
   /* Profile Details Table
    ========================================================================== */
-  /* Spotify Playlist
-   ========================================================================== */
   /*  Blog Roll
    ========================================================================== */
   /*  About Me
@@ -13738,14 +13736,6 @@ label.panel-block:hover {
   }
 }
 
-#profile .spotify-playlist {
-  margin-bottom: 16px;
-}
-
-#profile .spotify-playlist iframe {
-  height: 248px;
-}
-
 #profile .blog-roll {
   margin-bottom: 16px;
 }
@@ -13973,6 +13963,71 @@ label.panel-block:hover {
   min-height: calc(100vh - 170px);
 }
 
+#profile_editor .editor-wrapper .field {
+  padding: 0 16px 16px 16px;
+  margin-bottom: 0;
+}
+
+#profile_editor .editor-wrapper .field label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #646C9D;
+}
+
+#profile_editor .editor-wrapper .field .editor-profile-image-preview {
+  width: 56px;
+  height: 56px;
+}
+
+#profile_editor .editor-wrapper .field .control {
+  font-size: 11px;
+}
+
+#profile_editor .editor-wrapper .field .control .is-prefix-text {
+  line-height: 27px;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+#profile_editor .editor-wrapper .field .control .is-emoji {
+  height: 24px;
+}
+
+#profile_editor .editor-wrapper .field .control .input,
+#profile_editor .editor-wrapper .field .control .textarea {
+  color: #495057;
+  border: 1px solid #e2e5ec;
+  font-size: 12px;
+}
+
+#profile_editor .editor-wrapper .field .control .input.natural-width,
+#profile_editor .editor-wrapper .field .control .textarea.natural-width {
+  width: auto;
+}
+
+#profile_editor .editor-wrapper .field .control .textarea {
+  min-height: 96px;
+}
+
+#profile_editor .editor-wrapper .field .control .inline-button {
+  border-radius: 13px;
+  line-height: 24px;
+  border: 1px solid #E63D8A;
+  color: #E63D8A;
+  font-weight: 700;
+  padding: 0 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+#profile_editor .editor-wrapper .field .control .inline-button:hover {
+  background: rgba(230, 61, 138, 0.05);
+}
+
+#profile_editor .editor-wrapper .field .help {
+  font-size: 11px;
+}
+
 #profile_editor .editor-wrapper .editor-navigation {
   position: absolute;
   top: 0;
@@ -14067,15 +14122,8 @@ label.panel-block:hover {
   background: rgba(35, 88, 184, 0.07);
 }
 
-#profile_editor .editor-wrapper .editor-style-options {
-  position: absolute;
-  top: 57px;
-  bottom: 0;
-  left: 25%;
-  width: 25%;
-  background: white;
-  overflow-y: auto;
-  border-right: 1px solid #F2F3F4;
+#profile_editor .editor-wrapper .editor-navigation ul li a i {
+  opacity: 0.5;
 }
 
 #profile_editor .editor-wrapper .editor-content {
@@ -14109,6 +14157,7 @@ label.panel-block:hover {
   font-size: 12px;
   line-height: 24px;
   padding: 0 16px;
+  cursor: pointer;
 }
 
 #profile_editor .editor-wrapper .editor-content header .button-cta.solid,
@@ -14137,6 +14186,12 @@ label.panel-block:hover {
   padding: 0 1.5rem 1.5rem 1.5rem;
 }
 
+#profile_editor .editor-wrapper .editor-content .form .divider-headline {
+  font-weight: 700;
+  color: rgba(35, 88, 184, 0.5);
+  margin-bottom: 16px;
+}
+
 #profile_editor .editor-wrapper .editor-content .form .form-module {
   border-radius: 4px;
   -webkit-box-shadow: 1px solid rgba(234, 243, 253, 0.9);
@@ -14148,6 +14203,11 @@ label.panel-block:hover {
 
 #profile_editor .editor-wrapper .editor-content .form .form-module:last-child {
   margin-bottom: 0;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module.contains-preview {
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 #profile_editor .editor-wrapper .editor-content .form .form-module header {
@@ -14162,74 +14222,48 @@ label.panel-block:hover {
   line-height: 56px;
 }
 
-#profile_editor .editor-wrapper .editor-content .form .form-module .field {
-  padding: 0 16px 1.5rem 16px;
-  margin-bottom: 0;
+#profile_editor .editor-wrapper .editor-content .form .form-module header .options-tabs {
+  border-bottom: 1px solid #F0F6FF;
 }
 
-#profile_editor .editor-wrapper .editor-content .form .form-module .field label {
-  font-size: 11px;
-  font-weight: 700;
-  color: #646C9D;
-}
-
-#profile_editor .editor-wrapper .editor-content .form .form-module .field .editor-profile-image-preview {
-  width: 56px;
+#profile_editor .editor-wrapper .editor-content .form .form-module header .options-tabs li {
   height: 56px;
-}
-
-#profile_editor .editor-wrapper .editor-content .form .form-module .field .control {
-  font-size: 11px;
-}
-
-#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .is-prefix-text {
-  line-height: 27px;
-  display: inline-block;
-  margin-right: 4px;
-}
-
-#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .is-emoji {
-  height: 24px;
-}
-
-#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .input,
-#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .textarea {
-  color: #495057;
-  border: 1px solid #e2e5ec;
-  font-size: 12px;
-}
-
-#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .input.natural-width,
-#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .textarea.natural-width {
-  width: auto;
-}
-
-#profile_editor .editor-wrapper .editor-content .form .form-module .field .control .textarea {
-  min-height: 96px;
-}
-
-#profile_editor .editor-wrapper .editor-style-canvas {
-  position: absolute;
-  top: 57px;
-  bottom: 0;
-  left: 50%;
-  width: 50%;
-  background: #ffffff;
-}
-
-#profile_editor .editor-wrapper .editor-style-canvas h4 {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.25);
   font-weight: 700;
-  color: rgba(35, 88, 184, 0.5);
-  line-height: 32px;
+  border-bottom: 4px solid white;
 }
 
-#profile_editor .editor-wrapper .editor-style-canvas .editor-style-canvas-content {
+#profile_editor .editor-wrapper .editor-content .form .form-module header .options-tabs li.active-tab {
+  border-bottom: 4px solid #E63D8A;
+  color: #E63D8A;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .options-group .columns {
+  padding-bottom: 16px;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .options-group .columns .column {
+  padding-bottom: 0;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .options-group .columns .column:not(:nth-child(odd)) {
+  padding-left: 0;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .editor-preview-canvas {
+  margin: 0 16px;
+  background: #e5e5e5;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .editor-preview-canvas .editor-preview-content {
   background: white;
-  margin: 0 8px;
-  border-left: 81px solid #e5e5e5;
-  border-right: 81px solid #e5e5e5;
-  height: 385px;
-  position: relative;
+  margin: 0 auto;
+  width: 301px;
+}
+
+#profile_editor .editor-wrapper .editor-content .form .form-module .details-list strong {
+  color: #646C9D;
 }
 
 html,
@@ -14321,5 +14355,13 @@ nav.pagination {
 
 .instagram-caption {
   margin-bottom: 16px;
+}
+
+.spotify-playlist {
+  margin-bottom: 16px;
+}
+
+.spotify-playlist iframe {
+  height: 248px;
 }
 

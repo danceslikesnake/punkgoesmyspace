@@ -29,7 +29,8 @@ class AlbumSingleVotesController extends Controller
     }
 
     public function cast_vote(Request $request) {
-        $user = $_COOKIE['pga_user_id'];
+        $encrypter = app(\Illuminate\Contracts\Encryption\Encrypter::class);
+        $user = $encrypter->decrypt($_COOKIE['pga_user_id']);
         $check_votes = AlbumSingleVote::where('cookie_id', '=', $user)->get();
 
         if(count($check_votes) == 0) {

@@ -25,6 +25,11 @@ Route::post('cast_vote', 'AlbumSingleVotesController@cast_vote');
 Route::get('profile/edit/content', 'CustomThemesController@profile_content');
 Route::get('profile/edit/styles', 'CustomThemesController@profile_styles');
 Route::get('profile/edit/toptwelve', 'CustomThemesController@profile_toptwelve');
+Route::get('profile/edit/spotify_playlist', 'CustomThemesController@spotify_playlist');
+Route::get('profile/edit/custom_url', 'CustomThemesController@custom_url');
+Route::put('profile/update_custom_url/{id}', 'CustomThemesController@update_custom_url');
+Route::put('profile/update_content/{id}', 'CustomThemesController@update_content');
+Route::put('profile/update_spotify_playlist/{id}', 'CustomThemesController@update_spotify_playlist');
 
 /**
  * ADMIN ROUTES
