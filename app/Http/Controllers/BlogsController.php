@@ -12,7 +12,7 @@ class BlogsController extends Controller
     public function index()
     {
         $profile = Profile::find(1);
-        $blogs = Blog::all();
+        $blogs = Blog::orderBy('created_at', 'desc')->get();
 
         $get_banner_ad = BannerAd::where('is_active', '1')->get();
         if(count($get_banner_ad) ==  0) {
