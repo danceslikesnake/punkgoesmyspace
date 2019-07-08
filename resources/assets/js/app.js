@@ -1,14 +1,16 @@
 $(document).ready(function() {
-    $('#summernote_custom').summernote({
-        maximumImageFileSize: 512000,
-        toolbar: [
-            ['style', ['bold', 'italic', 'underline', 'strikethrough']],
-            ['textcolor', ['fontsize', 'forecolor', 'backcolor']],
-            ['para', ['ul', 'ol']],
-            ['insert', ['picture', 'link', 'video']],
-            ['misc', ['undo', 'redo', 'help']]
-        ]
-    });
+    if($('#summernote_custom').length) {
+        $('#summernote_custom').summernote({
+            maximumImageFileSize: 512000,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'strikethrough']],
+                ['textcolor', ['fontsize', 'forecolor', 'backcolor']],
+                ['para', ['ul', 'ol']],
+                ['insert', ['picture', 'link', 'video']],
+                ['misc', ['undo', 'redo', 'help']]
+            ]
+        });
+    }
     $('.launch-spotify-modal').on('click', function() {
         $('#spotify_modal').addClass('is-active');
     });

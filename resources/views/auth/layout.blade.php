@@ -34,7 +34,12 @@
     <link href="{{ asset('css/cms.css') }}" rel="stylesheet">
 </head>
 <body>
-
+@if($_SERVER['SERVER_NAME'] == 'test.punkgoes.com')
+    <div class="notification is-warning has-text-centered" style="margin-bottom: 0;">
+        <button class="delete"></button>
+        <i class="fas fa-exclamation-triangle"></i> <strong>This is the test site</strong> <i class="fas fa-exclamation-triangle"></i>
+    </div>
+@endif
 <div id="app">
     @include('auth.nav')
     <div class="main">
@@ -50,5 +55,17 @@
         crossorigin="anonymous"></script>
 <script src="{{ asset('js/summernote-lite.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+@if($_SERVER['SERVER_NAME'] == 'test.punkgoes.com')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                $notification = $delete.parentNode;
+                $delete.addEventListener('click', () => {
+                    $notification.parentNode.removeChild($notification);
+                });
+            });
+        });
+    </script>
+@endif
 </body>
 </html>

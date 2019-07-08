@@ -14,6 +14,9 @@
     @if(isset($add_summernote))
         <link rel="stylesheet" href="{{asset('css/summernote-lite.css')}}" />
     @endif
+    @if(isset($enable_spectrum))
+        <link rel="stylesheet" href="{{asset('css/spectrum.css')}}" />
+    @endif
     <link rel="stylesheet" href="{{asset('css/app.css')}}" />
 
     <link rel="apple-touch-icon" sizes="57x57" href="{{asset('apple-icon-57x57.png')}}">
@@ -139,6 +142,14 @@
 
 <body>
 <script>!function(e,t,n,s,a,c,p,i,o,u){e[a]||((i=e[a]=function(){i.process?i.process.apply(i,arguments):i.queue.push(arguments)}).queue=[],i.pixelId="ac2359fd-c120-43e4-8d18-f2eddf1d81f9",i.t=1*new Date,(o=t.createElement(n)).async=1,o.src="https://found.ee/dmp/pixel.js?t="+864e5*Math.ceil(new Date/864e5),(u=t.getElementsByTagName(n)[0]).parentNode.insertBefore(o,u))}(window,document,"script",0,"foundee");foundee('', 'Y');</script>
+
+@if($_SERVER['SERVER_NAME'] == 'test.punkgoes.com')
+<div class="notification is-warning has-text-centered" style="margin-bottom: 0;">
+    <button class="delete"></button>
+    <i class="fas fa-exclamation-triangle"></i> <strong>This is the test site</strong> <i class="fas fa-exclamation-triangle"></i>
+</div>
+@endif
+
 @yield('content')
 @include('shared.footer')
 @include('shared.modals')
@@ -147,7 +158,25 @@
     (function($) {window.fnames = new Array(); window.ftypes = new
     Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';}
     (jQuery));var $mcj = jQuery.noConflict(true);</script>
+@if(isset($add_summernote))
 <script src="{{ asset('js/summernote-lite.min.js') }}"></script>
+@endif
+@if(isset($enable_spectrum))
+<script src="{{ asset('js/spectrum.min.js') }}"></script>
+<script src="{{ asset('js/theme-editor.js') }}"></script>
+@endif
 <script src="{{ asset('js/app.js') }}"></script>
+@if($_SERVER['SERVER_NAME'] == 'test.punkgoes.com')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            $notification = $delete.parentNode;
+            $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+            });
+        });
+    });
+</script>
+@endif
 </body>
 </html>
