@@ -1,8 +1,8 @@
-@extends('shared.layout')
+@extends('shared.layout', ['use_custom_styles' => (isset($custom_theme['styles']) && !empty($custom_theme['styles'])) ? true : false, 'custom_styles' => $custom_theme['styles'], 'custom_theme_id' => $custom_theme['id']])
 
 @section('content')
     <div id="profile" class="container main-content-wrapper profile-width">
-        @include('shared.header', ['banner_ad' => $banner_ad])
+        @include('shared.header', ['banner_ad' => $banner_ad, 'use_custom_styles' => (isset($custom_theme['styles']) && !empty($custom_theme['styles'])) ? true : false])
         <div class="main-content">
             @if($show_voting)
             <div class="voting-module">

@@ -35,10 +35,62 @@ class ProfileController extends Controller
                 'id' => $get_custom_theme->id,
                 'custom_url' => $get_custom_theme->custom_url,
                 'content' => json_decode($get_custom_theme->profile_content, true),
-                'spotify_uri' => $get_custom_theme->profile_spotify_embed
+                'spotify_uri' => $get_custom_theme->profile_spotify_embed,
+                'styles' => json_decode($get_custom_theme->profile_theme, true)
             );
         }
 
+        /**
+         * Gather profile data
+         */
+        $profile = Profile::find(1);
+        $profile->details = explode("\n", $profile->details);
+
+        $blogs = Blog::orderBy('created_at', 'desc')->get()->take(5);
+
+        $topTwelve = TopTwelve::all();
+
+        $spotifyPlayer = SpotifyPlaylist::find(1);
+
+        $get_banner_ad = BannerAd::where('is_active', '1')->get();
+        if(count($get_banner_ad) ==  0) {
+            $banner_ad = null;
+        } else {
+            $banner_ad = $get_banner_ad[0];
+        }
+
+        return view('pages.profile.index')
+            ->with('profile', $profile)
+            ->with('blogs', $blogs)
+            ->with('topTwelve', $topTwelve)
+            ->with('spotifyPlayer', $spotifyPlayer)
+            ->with('banner_ad', $banner_ad)
+            ->with('show_voting', $show_voting)
+            ->with('custom_theme', $custom_theme);
+    }
+
+    public function theme_index($id) {
+        /**
+         * Check if we should show the voting module
+         */
+        $show_voting = false;
+        $get_custom_theme = CustomTheme::where('custom_url', '=', $id)->first();
+
+        $custom_theme = array(
+            'id' => $get_custom_theme->id,
+            'custom_url' => $get_custom_theme->custom_url,
+            'content' => json_decode($get_custom_theme->profile_content, true),
+            'spotify_uri' => $get_custom_theme->profile_spotify_embed,
+            'styles' => json_decode($get_custom_theme->profile_theme, true)
+        );
+        if(isset($_COOKIE['pga_user_id'])) {
+            $encrypter = app(\Illuminate\Contracts\Encryption\Encrypter::class);
+            $user_id = $encrypter->decrypt($_COOKIE['pga_user_id']);
+            $check_votes = AlbumSingleVote::where('cookie_id', '=', $user_id)->get();
+            if(count($check_votes) > 0) {
+                $show_voting = false;
+            }
+        }
         /**
          * Gather profile data
          */

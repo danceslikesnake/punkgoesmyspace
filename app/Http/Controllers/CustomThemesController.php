@@ -30,17 +30,17 @@ class CustomThemesController extends Controller
             ->with('profile', $starter_values['profile'])
             ->with('custom_url', $starter_values['custom_theme']['custom_url'])
             ->with('profile_id', $starter_values['custom_theme']['id'])
-            ->with('profile_content',json_decode($starter_values['custom_theme']['profile_content'], true));
+            ->with('profile_content', json_decode($starter_values['custom_theme']['profile_content'], true));
     }
 
     public function profile_styles() {
         $starter_values = $this->starter_values();
-
         return view('pages.profile.edit_styles')
             ->with('banner_ad', $starter_values['banner_ad'])
             ->with('profile', $starter_values['profile'])
             ->with('custom_url', $starter_values['custom_theme']['custom_url'])
-            ->with('profile_id', $starter_values['custom_theme']['id']);
+            ->with('profile_id', $starter_values['custom_theme']['id'])
+            ->with('custom_styles', json_decode($starter_values['custom_theme']['profile_theme'], true));
     }
 
     public function profile_toptwelve() {
@@ -163,8 +163,65 @@ class CustomThemesController extends Controller
         return redirect('profile/edit/spotify_playlist')->with('success', $response_message);
     }
 
-    private function check_custom_url(Request $request) {
+    public function update_styles(Request $request, $id) {
+        $custom_theme = CustomTheme::find($id);
+        $old_theme = json_decode($custom_theme->profile_content, true);
 
+        switch($request->input('form_action')) {
+            case 'save':
+                $styles = array(
+                    'content_bg_color' => ($request->input('content_bg_color')) ? $request->input('content_bg_color') : null,
+                    'general_text_color' => ($request->input('general_text_color')) ? $request->input('general_text_color') : null,
+                    'general_link_color' => ($request->input('general_link_color')) ? $request->input('general_link_color') : null,
+                    'main_bg_color' => ($request->input('main_bg_color')) ? $request->input('main_bg_color') : null,
+                    'main_bg_fill' => ($request->input('main_bg_fill')) ? $request->input('main_bg_fill') : null,
+                    'main_bg_position' => ($request->input('main_bg_position')) ? $request->input('main_bg_position') : null,
+                    'header_bg' => ($request->input('header_bg')) ? $request->input('header_bg') : null,
+                    'header_scrim' => ($request->input('header_scrim')) ? $request->input('header_scrim') : null,
+                    'header_text_color' => ($request->input('header_text_color')) ? $request->input('header_text_color') : null,
+                    'left_module_table_base_color' => ($request->input('left_module_table_base_color')) ? $request->input('left_module_table_base_color') : null,
+                    'left_module_header_text_color' => ($request->input('left_module_header_text_color')) ? $request->input('left_module_header_text_color') : null,
+                    'left_module_icon_color' => ($request->input('left_module_icon_color')) ? $request->input('left_module_icon_color') : null,
+                    'left_module_table_left_column_color' => ($request->input('left_module_table_left_column_color')) ? $request->input('left_module_table_left_column_color') : null,
+                    'left_module_table_left_column_text_color' => ($request->input('left_module_table_left_column_text_color')) ? $request->input('left_module_table_left_column_text_color') : null,
+                    'left_module_table_right_column_color' => ($request->input('left_module_table_right_column_color')) ? $request->input('left_module_table_right_column_color') : null,
+                    'left_module_table_right_column_text_color' => ($request->input('left_module_table_right_column_text_color')) ? $request->input('left_module_table_right_column_text_color') : null,
+                    'right_module_table_base_color' => ($request->input('right_module_table_base_color')) ? $request->input('right_module_table_base_color') : null,
+                    'right_module_table_header_text_color' => ($request->input('right_module_table_header_text_color')) ? $request->input('right_module_table_header_text_color') : null,
+                    'main_bg_image' => (isset($old_theme['main_bg_image']) && $old_theme['main_bg_image'] != '') ? $old_theme['main_bg_image'] : null
+                );
+
+                if($request->file('main_bg_image')) {
+                    $this->validate($request, [
+                        'main_bg_image' => 'image|max:1999'
+                    ]);
+
+                    $filenameWithExt = $request->file('main_bg_image')->getClientOriginalName();
+                    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                    $extension = $request->file('main_bg_image')->getClientOriginalExtension();
+                    $filenameToStore = $filename.'_'.time().'.'.$extension;
+
+                    // delete old photo
+                    if(isset($old_theme['main_bg_image']))
+                        Storage::disk('public_uploads')->delete('themes/'.$id.'/'.$old_theme['main_bg_image']);
+
+                    $path = $request->file('main_bg_image')->storeAs('themes/'.$id, $filenameToStore, ['disk' => 'public_uploads']);
+
+                    $styles['main_bg_image'] = $filenameToStore;
+                }
+
+                $custom_theme->profile_theme = json_encode($styles);
+                $response_message = 'Profile Styles were updated';
+                break;
+            case 'reset':
+                $custom_theme->profile_theme = null;
+                $response_message = 'Profile styles were reset';
+                break;
+        }
+
+        $custom_theme->save();
+
+        return redirect('profile/edit/styles')->with('success', $response_message);
     }
 
     private function starter_values() {

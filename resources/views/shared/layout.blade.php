@@ -84,6 +84,95 @@
         .hermano {
             font-family: 'HermanoAlto Round', sans-serif;
         }
+        @if(isset($use_custom_styles) && $use_custom_styles)
+        body.theme-override {
+            background-color: {{$custom_styles['main_bg_color']}};
+            @if(isset($custom_styles['main_bg_image']))
+            background-image: url('{{asset('uploads/themes/'.$custom_theme_id.'/'.$custom_styles['main_bg_image'])}}');
+            background-position: {{$custom_styles['main_bg_position']}};
+            @if($custom_styles['main_bg_fill'] != 'tile')
+             -webkit-background-size: {{$custom_styles['main_bg_fill']}};
+            background-size: {{$custom_styles['main_bg_fill']}};
+            background-repeat: no-repeat;
+            @endif
+            @endif
+        }
+        body.theme-override, .theme-override strong, .theme-override .online-now, .theme-override .online-now i, .theme-override .about-me-title {
+            color: {{$custom_styles['general_text_color']}} !important;
+        }
+        .theme-override .main-content a {
+            color: {{$custom_styles['general_link_color']}} !important;
+        }
+        .theme-override .main-content-wrapper {
+            background-color: {{$custom_styles['content_bg_color']}};
+        }
+        .theme-override #profile #header {
+            position: relative;
+            background: {{$custom_styles['header_bg']}};
+            background-image: none;
+            z-index: 0;
+        }
+        .theme-override #profile #header:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: {{$custom_styles['header_bg']}};
+            background: -moz-linear-gradient(180deg, {{$custom_styles['header_bg']}} 0%, {{$custom_styles['header_scrim']}} 100%);
+            background: -webkit-linear-gradient(180deg, {{$custom_styles['header_bg']}} 0%, {{$custom_styles['header_scrim']}} 100%);
+            background: linear-gradient(180deg, {{$custom_styles['header_bg']}} 0%, {{$custom_styles['header_scrim']}} 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="{{$custom_styles['header_bg']}}",endColorstr="{{$custom_styles['header_scrim']}}",GradientType=1);
+            z-index: -1;
+            opacity: 0.3;
+        }
+        .theme-override #header .nav-links {
+            background-image: none;
+        }
+        .theme-override #header .nav-links a.add-border {
+            border-right: none;
+        }
+        .theme-override #header .nav-links a:hover {
+            background: rgba(0,0,0,0.1);
+        }
+        .theme-override #header .nav-links a.edit-profile {
+            background-image: none;
+        }
+        .theme-override #header .nav-links a {
+            color: {{$custom_styles['header_text_color']}};
+        }
+        .theme-override .blue-content-block {
+            border-color: {{$custom_styles['left_module_table_base_color']}}
+        }
+        .theme-override .blue-content-block h3 {
+            background: {{$custom_styles['left_module_table_base_color']}};
+            color: {{$custom_styles['left_module_header_text_color']}};
+        }
+        .theme-override #profile .connect-block li a .fas, .theme-override #profile .connect-block li a .fab {
+            color: {{$custom_styles['left_module_icon_color']}} !important;
+            background-image: none !important;
+            -webkit-text-fill-color: {{$custom_styles['left_module_icon_color']}};
+        }
+        .theme-override #profile .details-table .th {
+            background: {{$custom_styles['left_module_table_left_column_color']}};
+            color: {{$custom_styles['left_module_table_left_column_text_color']}};
+        }
+        .theme-override #profile .details-table .td {
+            background: {{$custom_styles['left_module_table_right_column_color']}};
+            color: {{$custom_styles['left_module_table_right_column_text_color']}};
+        }
+        .theme-override .orange-content-block h3 {
+            background: {{$custom_styles['right_module_table_base_color']}};
+            color: {{$custom_styles['right_module_table_header_text_color']}};
+        }
+        @media screen and (max-width: 768px){
+            .theme-override #footer {
+                padding-top: 40px;
+            }
+        }
+        @endif
     </style>
 
 <!-- Facebook Pixel Code -->
@@ -140,7 +229,7 @@
     </script>
 </head>
 
-<body>
+<body class="{{(isset($custom_styles) && !empty($custom_styles)) ? 'theme-override' : ''}}">
 <script>!function(e,t,n,s,a,c,p,i,o,u){e[a]||((i=e[a]=function(){i.process?i.process.apply(i,arguments):i.queue.push(arguments)}).queue=[],i.pixelId="ac2359fd-c120-43e4-8d18-f2eddf1d81f9",i.t=1*new Date,(o=t.createElement(n)).async=1,o.src="https://found.ee/dmp/pixel.js?t="+864e5*Math.ceil(new Date/864e5),(u=t.getElementsByTagName(n)[0]).parentNode.insertBefore(o,u))}(window,document,"script",0,"foundee");foundee('', 'Y');</script>
 
 @if($_SERVER['SERVER_NAME'] == 'test.punkgoes.com')

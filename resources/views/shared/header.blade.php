@@ -1,4 +1,7 @@
 <header id="header">
+    @if(str_contains(url()->current(), 'theme'))
+    <div style="background: rgba(0,0,0,0.5); padding: 16px; text-align: center; color: white;">This is a custom theme. <a href="{{ url('profile/edit/custom_url') }}" style="color: white; font-weight: 700; text-decoration: underline;">Make your own now!</a></div>
+    @endif
     <div class="ad-container">
         @if(isset($banner_ad))
             <a href="{{$banner_ad->url}}" target="_blank" class=""><img class="ad-placeholder desktop" alt="{{$banner_ad->name}} Desktop" src="{{asset('uploads/banner_ads/'.$banner_ad->id.'/'.$banner_ad->image_desktop)}}" /></a>
@@ -24,7 +27,7 @@
                 @if(Request::is('/'))
                 <a class="navbar-item add-border edit-profile" href="{{ url('profile/edit/custom_url') }}"><i class="fas fa-cog"></i>&nbsp;Edit Profile</a>
                 @else
-                <a class="navbar-item add-border" href="{{ url('/') }}">Profile</a>
+                <a class="navbar-item add-border" href="{{ url('/') }}">My Profile</a>
                 @endif
                 <a class="navbar-item add-border" href="{{ url('albums') }}">Photos</a>
                 <a class="navbar-item add-border" href="{{ url('music_videos') }}">Videos</a>

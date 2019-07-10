@@ -8,7 +8,6 @@
             <div class="editor-content">
                 {!! Form::open(['action' => ['CustomThemesController@update_content', $profile_id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                 <input type="hidden" name="_method" value="PUT" />
-                <input type="hidden" name="redirect_route" value="{{url('profile/edit/content')}}" />
                 <header class="level">
                     <div class="level-left">
                         <div class="level-item">

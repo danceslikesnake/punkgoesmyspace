@@ -6,6 +6,7 @@
  */
 
 Route::get('/', 'ProfileController@index');
+Route::get('/theme/{id}', 'ProfileController@theme_index');
 
 Route::get('albums', 'AlbumsController@index');
 Route::get('albums/{id}', 'AlbumsController@show');
@@ -30,6 +31,7 @@ Route::get('profile/edit/custom_url', 'CustomThemesController@custom_url');
 Route::put('profile/update_custom_url/{id}', 'CustomThemesController@update_custom_url');
 Route::put('profile/update_content/{id}', 'CustomThemesController@update_content');
 Route::put('profile/update_spotify_playlist/{id}', 'CustomThemesController@update_spotify_playlist');
+Route::put('profile/update_styles/{id}', 'CustomThemesController@update_styles');
 
 /**
  * ADMIN ROUTES

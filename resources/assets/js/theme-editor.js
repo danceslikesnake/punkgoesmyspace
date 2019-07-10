@@ -15,6 +15,7 @@ $(document).ready(function(){
      * SPECTRUM COLOIR PICKERS
      */
     $(".basic-spectrum-picker").spectrum({
+        showAlpha: false,
         change: function(color) {
             let new_color = color.toHexString();
             handle_general_color_picking($(this), new_color, 'fill');
@@ -26,6 +27,14 @@ $(document).ready(function(){
         change: function(color) {
             let new_color = color.toRgbString();
             handle_general_color_picking($(this), new_color, 'background');
+        }
+    });
+
+    $('#header_bg_color').spectrum({
+        showAlpha: true,
+        change: function(color) {
+            let new_color = color.toRgbString();
+            handle_general_color_picking($(this), new_color, 'fill');
         }
     });
 
@@ -50,7 +59,6 @@ $(document).ready(function(){
     });
 
     $("#main_bg_color").spectrum({
-        showAlpha: true,
         change: function(color) {
             let new_color = color.toHexString();
             $(this).next().next().html(new_color);
@@ -118,15 +126,3 @@ function handle_general_color_picking(el, color, preview_type) {
         $('#' + editable_name).css(preview_type, color); // change editable preview
     }
 }
-
-/*
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#editable-main-bg').attr('background-image', e.target.result);
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-}*/
