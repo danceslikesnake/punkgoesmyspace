@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\File;
 class CustomThemesController extends Controller
 {
     public function custom_url() {
+        if(!isset($_COOKIE['pga_user_id']))
+            return redirect('/');
         $starter_values = $this->starter_values();
 
         return view('pages.profile.edit_custom_url')
@@ -23,6 +25,8 @@ class CustomThemesController extends Controller
     }
 
     public function profile_content() {
+        if(!isset($_COOKIE['pga_user_id']))
+            return redirect('/');
         $starter_values = $this->starter_values();
 
         return view('pages.profile.edit_content')
@@ -34,6 +38,8 @@ class CustomThemesController extends Controller
     }
 
     public function profile_styles() {
+        if(!isset($_COOKIE['pga_user_id']))
+            return redirect('/');
         $starter_values = $this->starter_values();
         return view('pages.profile.edit_styles')
             ->with('banner_ad', $starter_values['banner_ad'])
@@ -44,6 +50,8 @@ class CustomThemesController extends Controller
     }
 
     public function profile_toptwelve() {
+        if(!isset($_COOKIE['pga_user_id']))
+            return redirect('/');
         $starter_values = $this->starter_values();
 
         return view('pages.profile.edit_top_twelve')
@@ -54,6 +62,8 @@ class CustomThemesController extends Controller
     }
 
     public function spotify_playlist() {
+        if(!isset($_COOKIE['pga_user_id']))
+            return redirect('/');
         $spotifyPlayer = SpotifyPlaylist::find(1);
         $starter_values = $this->starter_values();
 
