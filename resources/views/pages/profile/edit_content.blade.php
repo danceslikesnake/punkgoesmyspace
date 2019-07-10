@@ -57,7 +57,7 @@
                                     <label class="label">Name</label>
                                     <div class="control">
                                         <input
-                                                class="input"
+                                                class="input track-character-count"
                                                 type="text"
                                                 placeholder="Punk Goes"
                                                 maxlength="75"
@@ -65,7 +65,7 @@
                                                 id="name"
                                                 value="{{$profile_content['name']}}" />
                                     </div>
-                                    <span class="help" id="name_character_count"><span>0</span>/75</span>
+                                    <span class="help" id="name_character_count"><span>{{strlen($profile_content['name'])}}</span>/75</span>
                                 </div>
                             </div>
                             <div class="column is-half">
@@ -73,7 +73,7 @@
                                     <label class="label">Quote</label>
                                     <div class="control">
                                         <input
-                                                class="input"
+                                                class="input track-character-count"
                                                 type="text"
                                                 placeholder="{{$profile->quote}}"
                                                 maxlength="75"
@@ -89,7 +89,7 @@
                                     <label class="label">Location</label>
                                     <div class="control">
                                         <input
-                                                class="input"
+                                                class="input track-character-count"
                                                 type="text"
                                                 placeholder="{{$profile->address}}"
                                                 maxlength="75"
@@ -138,7 +138,7 @@
                                                 <option {{ (isset($profile_content['mood']) && $profile_content['mood'] == 'robotic') ? 'selected' : '' }} value="robotic">robotic</option>
                                             </select>
                                         </div>
-                                        <img src="{{ (isset($profile_content['mood']) && $profile_content['mood'] != '') ? asset('img/emojis/'.$profile_content['mood'].'.svg') : asset('img/emojis/happy.svg') }}" class="is-emoji" />
+                                        <img src="{{ (isset($profile_content['mood']) && $profile_content['mood'] != '') ? asset('img/emojis/'.$profile_content['mood'].'.svg') : asset('img/emojis/happy.svg') }}" data-route="{{asset('img/emojis/%%.svg')}}" class="is-emoji dynamic-emoji" />
                                     </div>
                                 </div>
                             </div>
@@ -152,9 +152,9 @@
                             <div class="column is-half">
                                 <div class="field">
                                     <div class="control">
-                                        <strong class="is-prefix-text">Status</strong>
+                                        <label class="label">Status</label>
                                         <input
-                                                class="input natural-width"
+                                                class="input track-character-count"
                                                 type="text"
                                                 maxlength="45"
                                                 placeholder="It's Complicated ¯\_(ツ)_/¯"
@@ -162,14 +162,15 @@
                                                 id="status"
                                                 value="{{ (isset($profile_content['details']['status'])) ? $profile_content['details']['status'] : '' }}" />
                                     </div>
+                                    <span class="help" id="status_character_count"><span>{{strlen($profile_content['details']['status'])}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
                                 <div class="field">
                                     <div class="control">
-                                        <strong class="is-prefix-text">Here For</strong>
+                                        <label class="label">Here For</label>
                                         <input
-                                                class="input natural-width"
+                                                class="input track-character-count"
                                                 type="text"
                                                 maxlength="45"
                                                 placeholder="Friends"
@@ -177,132 +178,142 @@
                                                 id="here_for"
                                                 value="{{ (isset($profile_content['details']['here_for'])) ? $profile_content['details']['here_for'] : '' }}" />
                                     </div>
+                                    <span class="help" id="here_for_character_count"><span>{{strlen($profile_content['details']['here_for'])}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
                                 <div class="field">
                                     <div class="control">
-                                        <strong class="is-prefix-text">Orientation</strong>
+                                        <label class="label">Orientation</label>
                                         <input
-                                                class="input natural-width"
+                                                class="input track-character-count"
                                                 type="text"
                                                 maxlength="45"
                                                 name="details[orientation]"
                                                 id="orientation"
                                                 value="{{ (isset($profile_content['details']['orientation'])) ? $profile_content['details']['orientation'] : '' }}" />
                                     </div>
+                                    <span class="help" id="orientation_character_count"><span>{{strlen($profile_content['details']['orientation'])}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
                                 <div class="field">
                                     <div class="control">
-                                        <strong class="is-prefix-text">Hometown</strong>
+                                        <label class="label">Hometown</label>
                                         <input
-                                                class="input natural-width"
+                                                class="input track-character-count"
                                                 type="text"
-                                                maxlength="50"
+                                                maxlength="45"
                                                 name="details[hometown]"
                                                 id="hometown"
                                                 value="{{ (isset($profile_content['details']['hometown'])) ? $profile_content['details']['hometown'] : '' }}" />
                                     </div>
+                                    <span class="help" id="hometown_character_count"><span>{{strlen($profile_content['details']['hometown'])}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
                                 <div class="field">
                                     <div class="control">
-                                        <strong class="is-prefix-text">Ethnicity</strong>
+                                        <label class="label">Ethnicity</label>
                                         <input
-                                                class="input natural-width"
+                                                class="input track-character-count"
                                                 type="text"
                                                 maxlength="45"
                                                 name="details[ethnicity]"
                                                 id="ethnicity"
                                                 value="{{ (isset($profile_content['details']['ethnicity'])) ? $profile_content['details']['ethnicity'] : '' }}" />
                                     </div>
+                                    <span class="help" id="ethnicity_character_count"><span>{{strlen($profile_content['details']['ethnicity'])}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
                                 <div class="field">
                                     <div class="control">
-                                        <strong class="is-prefix-text">Religion</strong>
+                                        <label class="label">Religion</label>
                                         <input
-                                                class="input natural-width"
+                                                class="input track-character-count"
                                                 type="text"
                                                 maxlength="45"
                                                 name="details[religion]"
                                                 id="religion"
                                                 value="{{ (isset($profile_content['details']['religion'])) ? $profile_content['details']['religion'] : '' }}" />
                                     </div>
+                                    <span class="help" id="religion_character_count"><span>{{strlen($profile_content['details']['religion'])}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
                                 <div class="field">
                                     <div class="control">
-                                        <strong class="is-prefix-text">Zodiac Sign</strong>
+                                        <label class="label">Zodiac Sign</label>
                                         <input
-                                                class="input natural-width"
+                                                class="input track-character-count"
                                                 type="text"
                                                 maxlength="45"
                                                 name="details[zodiac_sign]"
                                                 id="zodiac_sign"
                                                 value="{{ (isset($profile_content['details']['zodiac_sign'])) ? $profile_content['details']['zodiac_sign'] : '' }}" />
                                     </div>
+                                    <span class="help" id="zodiac_sign_character_count"><span>{{strlen($profile_content['details']['zodiac_sign'])}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
                                 <div class="field">
                                     <div class="control">
-                                        <strong class="is-prefix-text">Smoke / Drink</strong>
+                                        <label class="label">Smoke / Drink</label>
                                         <input
-                                                class="input natural-width"
+                                                class="input track-character-count"
                                                 type="text"
                                                 maxlength="45"
                                                 name="details[smoke_/_drink]"
                                                 id="smoke_/_drink"
                                                 value="{{ (isset($profile_content['details']['smoke_/_drink'])) ? $profile_content['details']['smoke_/_drink'] : '' }}" />
                                     </div>
+                                    <span class="help" id="smoke_drink_character_count"><span>{{strlen($profile_content['details']['smoke_/_drink'])}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
                                 <div class="field">
                                     <div class="control">
-                                        <strong class="is-prefix-text">Children</strong>
+                                        <label class="label">Children</label>
                                         <input
-                                                class="input natural-width"
+                                                class="input track-character-count"
                                                 type="text"
                                                 maxlength="45"
                                                 name="details[children]"
                                                 id="children"
                                                 value="{{ (isset($profile_content['details']['children'])) ? $profile_content['details']['children'] : '' }}" />
                                     </div>
+                                    <span class="help" id="children_character_count"><span>{{strlen($profile_content['details']['children'])}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
                                 <div class="field">
                                     <div class="control">
-                                        <strong class="is-prefix-text">Education</strong>
+                                        <label class="label">Education</label>
                                         <input
-                                                class="input natural-width"
+                                                class="input track-character-count"
                                                 type="text"
                                                 maxlength="45"
                                                 name="details[education]"
                                                 id="education"
                                                 value="{{ (isset($profile_content['details']['education'])) ? $profile_content['details']['education'] : '' }}" />
                                     </div>
+                                    <span class="help" id="education_character_count"><span>{{strlen($profile_content['details']['education'])}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
                                 <div class="field">
                                     <div class="control">
-                                        <strong class="is-prefix-text">Occupation</strong>
+                                        <label class="label">Occupation</label>
                                         <input
-                                                class="input natural-width"
+                                                class="input track-character-count"
                                                 type="text"
                                                 maxlength="45"
                                                 name="details[occupation]"
                                                 id="occupation"
                                                 value="{{ (isset($profile_content['details']['occupation'])) ? $profile_content['details']['occupation'] : '' }}" />
                                     </div>
+                                    <span class="help" id="occupation_character_count"><span>{{strlen($profile_content['details']['occupation'])}}</span>/45</span>
                                 </div>
                             </div>
                         </div>

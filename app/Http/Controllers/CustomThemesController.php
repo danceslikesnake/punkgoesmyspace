@@ -165,7 +165,7 @@ class CustomThemesController extends Controller
 
     public function update_styles(Request $request, $id) {
         $custom_theme = CustomTheme::find($id);
-        $old_theme = json_decode($custom_theme->profile_content, true);
+        $old_theme = json_decode($custom_theme->profile_theme, true);
 
         switch($request->input('form_action')) {
             case 'save':
@@ -176,6 +176,7 @@ class CustomThemesController extends Controller
                     'main_bg_color' => ($request->input('main_bg_color')) ? $request->input('main_bg_color') : null,
                     'main_bg_fill' => ($request->input('main_bg_fill')) ? $request->input('main_bg_fill') : null,
                     'main_bg_position' => ($request->input('main_bg_position')) ? $request->input('main_bg_position') : null,
+                    'main_bg_fixed' => ($request->input('main_bg_fixed')) ? $request->input('main_bg_fixed') : null,
                     'header_bg' => ($request->input('header_bg')) ? $request->input('header_bg') : null,
                     'header_scrim' => ($request->input('header_scrim')) ? $request->input('header_scrim') : null,
                     'header_text_color' => ($request->input('header_text_color')) ? $request->input('header_text_color') : null,
@@ -191,7 +192,8 @@ class CustomThemesController extends Controller
                     'main_bg_image' => (isset($old_theme['main_bg_image']) && $old_theme['main_bg_image'] != '') ? $old_theme['main_bg_image'] : null
                 );
 
-                if($request->file('main_bg_image')) {
+                if($request->hasFile('main_bg_image')) {
+
                     $this->validate($request, [
                         'main_bg_image' => 'image|max:1999'
                     ]);

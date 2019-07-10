@@ -229,4 +229,25 @@ $(document).ready(function() {
             }
         });
     }
+
+    if($('.track-character-count').length) {
+        $('.track-character-count').keyup(function(){
+            let id = $(this).attr('id');
+            if(id == 'smoke_/_drink')
+                id = 'smoke_drink';
+
+            let char_count = $(this).val().length;
+            $('#' + id + '_character_count span').html(char_count);
+        });
+    }
+
+    if($('.mood-selector').length) {
+        $('.mood-selector').change(function() {
+            let emoji = $(this).val();
+            let img = $('.dynamic-emoji');
+            let route = img.attr('data-route');
+
+            img.attr('src', route.replace('%%', emoji));
+        });
+    }
 });

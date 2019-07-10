@@ -64,6 +64,7 @@ $(document).ready(function(){
             $(this).next().next().html(new_color);
 
             $('#editable-main-bg').css('background-color', new_color);
+            $(this).val(new_color);
         }
     });
 
@@ -82,12 +83,16 @@ $(document).ready(function(){
 
                if($('#main_bg_position').attr('disabled'))
                    $('#main_bg_position').attr('disabled', false)
+
+                if($('#main_bg_fixed').attr('disabled'))
+                    $('#main_bg_fixed').attr('disabled', false)
             };
             reader.readAsDataURL(bg_image.files[0]);
         } else {
-            $('#main_bg_fill, #main_bg_position').attr('disabled', true);
+            $('#main_bg_fill, #main_bg_position, #main_bg_fixed').attr('disabled', true);
             $('#main_bg_fill').val('cover');
             $('#main_bg_position').val('top left');
+            $('#main_bg_fixed').val('scroll');
         }
     });
 

@@ -85,8 +85,14 @@
             font-family: 'HermanoAlto Round', sans-serif;
         }
         @if(isset($use_custom_styles) && $use_custom_styles)
+        html, body {
+            background-color: {{$custom_styles['main_bg_color']}};
+        }
         body.theme-override {
             background-color: {{$custom_styles['main_bg_color']}};
+            @if(isset($custom_styles['main_bg_fixed']))
+            background-attachment: {{$custom_styles['main_bg_fixed']}};
+            @endif
             @if(isset($custom_styles['main_bg_image']))
             background-image: url('{{asset('uploads/themes/'.$custom_theme_id.'/'.$custom_styles['main_bg_image'])}}');
             background-position: {{$custom_styles['main_bg_position']}};
