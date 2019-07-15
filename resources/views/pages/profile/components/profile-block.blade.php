@@ -15,7 +15,7 @@
             <div class="online-now">
                 <i class="fas fa-user"></i>Online Now!
             </div>
-            Last Login: 06/28/2019
+            Last Login: {{date('m/d/Y', strtotime($blogs[0]->created_at))}}
         </div>
     </div>
     <div class="mood-and-links has-text-centered-mobile">
