@@ -11,6 +11,7 @@ use App\TopTwelve;
 use App\SpotifyPlaylist;
 use App\BannerAd;
 use App\CustomTheme;
+use App\UserTopTwelve;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -31,12 +32,19 @@ class ProfileController extends Controller
 
             $get_custom_theme = CustomTheme::where('cookie_id', '=', $user_id)->first();
 
+            $top_artists = null;
+            if($get_custom_theme->profile_top_twelve) {
+                $selected_artists = json_decode($get_custom_theme->profile_top_twelve, true);
+                $top_artists = UserTopTwelve::whereIn('id', $selected_artists)->get();
+            }
+
             $custom_theme = array(
                 'id' => $get_custom_theme->id,
                 'custom_url' => $get_custom_theme->custom_url,
                 'content' => json_decode($get_custom_theme->profile_content, true),
                 'spotify_uri' => $get_custom_theme->profile_spotify_embed,
-                'styles' => json_decode($get_custom_theme->profile_theme, true)
+                'styles' => json_decode($get_custom_theme->profile_theme, true),
+                'topArtists' => $top_artists
             );
         }
 
@@ -76,48 +84,59 @@ class ProfileController extends Controller
         $show_voting = false;
         $get_custom_theme = CustomTheme::where('custom_url', '=', $id)->first();
 
-        $custom_theme = array(
-            'id' => $get_custom_theme->id,
-            'custom_url' => $get_custom_theme->custom_url,
-            'content' => json_decode($get_custom_theme->profile_content, true),
-            'spotify_uri' => $get_custom_theme->profile_spotify_embed,
-            'styles' => json_decode($get_custom_theme->profile_theme, true)
-        );
-        if(isset($_COOKIE['pga_user_id'])) {
-            $encrypter = app(\Illuminate\Contracts\Encryption\Encrypter::class);
-            $user_id = $encrypter->decrypt($_COOKIE['pga_user_id']);
-            $check_votes = AlbumSingleVote::where('cookie_id', '=', $user_id)->get();
-            if(count($check_votes) > 0) {
-                $show_voting = false;
+        if($get_custom_theme) {
+            $top_artists = null;
+            if($get_custom_theme->profile_top_twelve) {
+                $selected_artists = json_decode($get_custom_theme->profile_top_twelve, true);
+                $top_artists = UserTopTwelve::whereIn('id', $selected_artists)->get();
             }
-        }
-        /**
-         * Gather profile data
-         */
-        $profile = Profile::find(1);
-        $profile->details = explode("\n", $profile->details);
 
-        $blogs = Blog::orderBy('created_at', 'desc')->get()->take(5);
+            $custom_theme = array(
+                'id' => $get_custom_theme->id,
+                'custom_url' => $get_custom_theme->custom_url,
+                'content' => json_decode($get_custom_theme->profile_content, true),
+                'spotify_uri' => $get_custom_theme->profile_spotify_embed,
+                'styles' => json_decode($get_custom_theme->profile_theme, true),
+                'topArtists' => $top_artists
+            );
+            if(isset($_COOKIE['pga_user_id'])) {
+                $encrypter = app(\Illuminate\Contracts\Encryption\Encrypter::class);
+                $user_id = $encrypter->decrypt($_COOKIE['pga_user_id']);
+                $check_votes = AlbumSingleVote::where('cookie_id', '=', $user_id)->get();
+                if(count($check_votes) > 0) {
+                    $show_voting = false;
+                }
+            }
+            /**
+             * Gather profile data
+             */
+            $profile = Profile::find(1);
+            $profile->details = explode("\n", $profile->details);
 
-        $topTwelve = TopTwelve::all();
+            $blogs = Blog::orderBy('created_at', 'desc')->get()->take(5);
 
-        $spotifyPlayer = SpotifyPlaylist::find(1);
+            $topTwelve = TopTwelve::all();
 
-        $get_banner_ad = BannerAd::where('is_active', '1')->get();
-        if(count($get_banner_ad) ==  0) {
-            $banner_ad = null;
+            $spotifyPlayer = SpotifyPlaylist::find(1);
+
+            $get_banner_ad = BannerAd::where('is_active', '1')->get();
+            if(count($get_banner_ad) ==  0) {
+                $banner_ad = null;
+            } else {
+                $banner_ad = $get_banner_ad[0];
+            }
+
+            return view('pages.profile.index')
+                ->with('profile', $profile)
+                ->with('blogs', $blogs)
+                ->with('topTwelve', $topTwelve)
+                ->with('spotifyPlayer', $spotifyPlayer)
+                ->with('banner_ad', $banner_ad)
+                ->with('show_voting', $show_voting)
+                ->with('custom_theme', $custom_theme);
         } else {
-            $banner_ad = $get_banner_ad[0];
+            return redirect('/')->with('theme_error', 'Oops, we couldn\'t find the theme <strong>"'.$id.'"</strong>!');
         }
-
-        return view('pages.profile.index')
-            ->with('profile', $profile)
-            ->with('blogs', $blogs)
-            ->with('topTwelve', $topTwelve)
-            ->with('spotifyPlayer', $spotifyPlayer)
-            ->with('banner_ad', $banner_ad)
-            ->with('show_voting', $show_voting)
-            ->with('custom_theme', $custom_theme);
     }
 
     public function edit()

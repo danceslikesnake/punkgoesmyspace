@@ -105,7 +105,7 @@ class TopTwelveController extends Controller
         if(Storage::disk('public_uploads')->delete('toptwelve/'.$toptwelve->photo)) {
             $toptwelve->delete();
 
-            return redirect('admin/toptwelve/')->with('success', 'Top Twelve list item eleted');
+            return redirect('admin/toptwelve/')->with('success', 'Top Twelve list item deleted');
         }
     }
 }

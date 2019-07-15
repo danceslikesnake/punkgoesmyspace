@@ -3,7 +3,7 @@
         Punk Goes' Details
     @endslot
 
-    <ul class="details-table" style="margin-bottom: -4px;">
+    <ul class="details-table">
         @if(!empty($custom_theme['content']['details']))
             @foreach($custom_theme['content']['details'] as $key => $val)
             <li class="tr">

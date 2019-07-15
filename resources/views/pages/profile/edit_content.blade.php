@@ -8,21 +8,18 @@
             <div class="editor-content">
                 {!! Form::open(['action' => ['CustomThemesController@update_content', $profile_id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                 <input type="hidden" name="_method" value="PUT" />
-                <header class="level">
-                    <div class="level-left">
-                        <div class="level-item">
-                            <h2><i class="fas fa-fw fa-file-alt"></i> profile content</h2>
-                        </div>
-                    </div>
-                    <div class="level-right">
+                @component('pages.profile.components.editor-content-header')
+                    @slot('title')
+                        <i class="fas fa-fw fa-file-alt"></i> <span>profile</span> content
+                    @endslot
+
                         <div class="level-item">
                             <button type="submit" name="form_action" class="button-cta outline" value="reset"><i class="fas fa-undo-alt fa-fw"></i> reset</button>
                         </div>
                         <div class="level-item">
                             <button type="submit" name="form_action" class="button-cta solid" value="save"><i class="fas fa-save fa-fw"></i> save</button>
                         </div>
-                    </div>
-                </header>
+                @endcomponent
                 @include('shared.messages')
                 <div class="form">
                     <section class="form-module">
@@ -30,16 +27,16 @@
                             <h3>Profile Image</h3>
                         </header>
                         <div class="field">
-                            <div class="level">
+                            <div class="level is-mobile">
                                 <div class="level-left">
                                     <div class="level-item">
-                                        <img src="{{ (isset($profile_content['custom_profile_image']) && $profile_content['custom_profile_image'] != '') ? asset('uploads/themes/'.$profile_id.'/'.$profile_content['custom_profile_image']) : asset('uploads/profile/'.$profile->profile_photo) }}" class="editor-profile-image-preview" />
+                                        <img id="profile_image_preview" src="{{ (isset($profile_content['custom_profile_image']) && $profile_content['custom_profile_image'] != '') ? asset('uploads/themes/'.$profile_id.'/'.$profile_content['custom_profile_image']) : asset('uploads/profile/'.$profile->profile_photo) }}" class="editor-profile-image-preview" />
                                     </div>
                                     <div class="level-item">
                                         <div>
                                             <label class="label" for="custom_url_tag">Choose an image...</label>
                                             <div class="control">
-                                                <input class="input" type="file" name="custom_profile_image" id="custom_profile_image" />
+                                                <input class="input" type="file" name="custom_profile_image" id="custom_profile_image" style="width: 200px;" />
                                             </div>
                                         </div>
                                     </div>
@@ -162,7 +159,7 @@
                                                 id="status"
                                                 value="{{ (isset($profile_content['details']['status'])) ? $profile_content['details']['status'] : '' }}" />
                                     </div>
-                                    <span class="help" id="status_character_count"><span>{{strlen($profile_content['details']['status'])}}</span>/45</span>
+                                    <span class="help" id="status_character_count"><span>{{isset($profile_content['details']['status']) ? strlen($profile_content['details']['status']) : '0'}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
@@ -178,7 +175,7 @@
                                                 id="here_for"
                                                 value="{{ (isset($profile_content['details']['here_for'])) ? $profile_content['details']['here_for'] : '' }}" />
                                     </div>
-                                    <span class="help" id="here_for_character_count"><span>{{strlen($profile_content['details']['here_for'])}}</span>/45</span>
+                                    <span class="help" id="here_for_character_count"><span>{{isset($profile_content['details']['here_for']) ? strlen($profile_content['details']['here_for']) : '0'}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
@@ -193,7 +190,7 @@
                                                 id="orientation"
                                                 value="{{ (isset($profile_content['details']['orientation'])) ? $profile_content['details']['orientation'] : '' }}" />
                                     </div>
-                                    <span class="help" id="orientation_character_count"><span>{{strlen($profile_content['details']['orientation'])}}</span>/45</span>
+                                    <span class="help" id="orientation_character_count"><span>{{isset($profile_content['details']['orientation']) ? strlen($profile_content['details']['orientation']) : '0'}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
@@ -208,7 +205,7 @@
                                                 id="hometown"
                                                 value="{{ (isset($profile_content['details']['hometown'])) ? $profile_content['details']['hometown'] : '' }}" />
                                     </div>
-                                    <span class="help" id="hometown_character_count"><span>{{strlen($profile_content['details']['hometown'])}}</span>/45</span>
+                                    <span class="help" id="hometown_character_count"><span>{{isset($profile_content['details']['hometown']) ? strlen($profile_content['details']['hometown']) : '0'}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
@@ -223,7 +220,7 @@
                                                 id="ethnicity"
                                                 value="{{ (isset($profile_content['details']['ethnicity'])) ? $profile_content['details']['ethnicity'] : '' }}" />
                                     </div>
-                                    <span class="help" id="ethnicity_character_count"><span>{{strlen($profile_content['details']['ethnicity'])}}</span>/45</span>
+                                    <span class="help" id="ethnicity_character_count"><span>{{isset($profile_content['details']['ethnicity']) ? strlen($profile_content['details']['ethnicity']) : '0'}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
@@ -238,7 +235,7 @@
                                                 id="religion"
                                                 value="{{ (isset($profile_content['details']['religion'])) ? $profile_content['details']['religion'] : '' }}" />
                                     </div>
-                                    <span class="help" id="religion_character_count"><span>{{strlen($profile_content['details']['religion'])}}</span>/45</span>
+                                    <span class="help" id="religion_character_count"><span>{{isset($profile_content['details']['religion']) ? strlen($profile_content['details']['religion']) : '0'}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
@@ -253,7 +250,7 @@
                                                 id="zodiac_sign"
                                                 value="{{ (isset($profile_content['details']['zodiac_sign'])) ? $profile_content['details']['zodiac_sign'] : '' }}" />
                                     </div>
-                                    <span class="help" id="zodiac_sign_character_count"><span>{{strlen($profile_content['details']['zodiac_sign'])}}</span>/45</span>
+                                    <span class="help" id="zodiac_sign_character_count"><span>{{isset($profile_content['details']['zodiac_sign']) ? strlen($profile_content['details']['zodiac_sign']) : '0'}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
@@ -268,7 +265,7 @@
                                                 id="smoke_/_drink"
                                                 value="{{ (isset($profile_content['details']['smoke_/_drink'])) ? $profile_content['details']['smoke_/_drink'] : '' }}" />
                                     </div>
-                                    <span class="help" id="smoke_drink_character_count"><span>{{strlen($profile_content['details']['smoke_/_drink'])}}</span>/45</span>
+                                    <span class="help" id="smoke_drink_character_count"><span>{{isset($profile_content['details']['smoke_/_drink']) ? strlen($profile_content['details']['smoke_/_drink']) : '0'}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
@@ -283,7 +280,7 @@
                                                 id="children"
                                                 value="{{ (isset($profile_content['details']['children'])) ? $profile_content['details']['children'] : '' }}" />
                                     </div>
-                                    <span class="help" id="children_character_count"><span>{{strlen($profile_content['details']['children'])}}</span>/45</span>
+                                    <span class="help" id="children_character_count"><span>{{isset($profile_content['details']['children']) ? strlen($profile_content['details']['children']) : '0'}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
@@ -298,7 +295,7 @@
                                                 id="education"
                                                 value="{{ (isset($profile_content['details']['education'])) ? $profile_content['details']['education'] : '' }}" />
                                     </div>
-                                    <span class="help" id="education_character_count"><span>{{strlen($profile_content['details']['education'])}}</span>/45</span>
+                                    <span class="help" id="education_character_count"><span>{{isset($profile_content['details']['education']) ? strlen($profile_content['details']['education']) : '0'}}</span>/45</span>
                                 </div>
                             </div>
                             <div class="column is-half">
@@ -313,13 +310,13 @@
                                                 id="occupation"
                                                 value="{{ (isset($profile_content['details']['occupation'])) ? $profile_content['details']['occupation'] : '' }}" />
                                     </div>
-                                    <span class="help" id="occupation_character_count"><span>{{strlen($profile_content['details']['occupation'])}}</span>/45</span>
+                                    <span class="help" id="occupation_character_count"><span>{{isset($profile_content['details']['occupation']) ? strlen($profile_content['details']['occupation']) : '0'}}</span>/45</span>
                                 </div>
                             </div>
                         </div>
                     </section>
                 </div>
-                <footer class="level">
+                <footer class="level is-mobile">
                     <div class="level-left"></div>
                     <div class="level-right">
                         <div class="level-item">

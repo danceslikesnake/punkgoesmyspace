@@ -32,6 +32,7 @@ Route::put('profile/update_custom_url/{id}', 'CustomThemesController@update_cust
 Route::put('profile/update_content/{id}', 'CustomThemesController@update_content');
 Route::put('profile/update_spotify_playlist/{id}', 'CustomThemesController@update_spotify_playlist');
 Route::put('profile/update_styles/{id}', 'CustomThemesController@update_styles');
+Route::put('profile/update_user_top_twelve/{id}', 'CustomThemesController@update_user_top_twelve');
 
 /**
  * ADMIN ROUTES
@@ -92,3 +93,9 @@ Route::put('admin/bannerads/update/{id}', 'BannerAdsController@update');
 Route::delete('admin/bannerads/delete/{id}', 'BannerAdsController@destroy');
 
 Route::get('admin/votingresults', 'AlbumSingleVotesController@index');
+
+Route::get('admin/usertoptwelve', 'UserTopTwelvesController@cms_index');
+Route::post('admin/usertoptwelve/store', 'UserTopTwelvesController@store');
+Route::get('admin/usertoptwelve/edit/{id}', 'UserTopTwelvesController@cms_edit');
+Route::put('admin/usertoptwelve/update/{id}', 'UserTopTwelvesController@cms_update');
+Route::delete('admin/usertoptwelve/destroy/{id}', 'UserTopTwelvesController@destroy');

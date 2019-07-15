@@ -7,6 +7,7 @@ use App\BannerAd;
 use App\Profile;
 use App\CustomTheme;
 use App\SpotifyPlaylist;
+use App\UserTopTwelve;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
@@ -50,6 +51,8 @@ class CustomThemesController extends Controller
     }
 
     public function profile_toptwelve() {
+        $availableTopTwelves = UserTopTwelve::orderBy('artist_name', 'asc')->get();
+
         if(!isset($_COOKIE['pga_user_id']))
             return redirect('/');
         $starter_values = $this->starter_values();
@@ -58,7 +61,9 @@ class CustomThemesController extends Controller
             ->with('banner_ad', $starter_values['banner_ad'])
             ->with('profile', $starter_values['profile'])
             ->with('custom_url', $starter_values['custom_theme']['custom_url'])
-            ->with('profile_id', $starter_values['custom_theme']['id']);
+            ->with('profile_id', $starter_values['custom_theme']['id'])
+            ->with('availableTopTwelveList', $availableTopTwelves)
+            ->with('selectedArtists', json_decode($starter_values['custom_theme']['profile_top_twelve']), true);
     }
 
     public function spotify_playlist() {
@@ -234,6 +239,32 @@ class CustomThemesController extends Controller
         $custom_theme->save();
 
         return redirect('profile/edit/styles')->with('success', $response_message);
+    }
+
+    public function update_user_top_twelve(Request $request, $id) {
+        $custom_theme = CustomTheme::find($id);
+
+        switch($request->input('form_action')) {
+            case 'save':
+                $artist_array = array();
+                foreach($request->input('userTopTwelve') as $artist) {
+                    if($artist != '') {
+                        array_push($artist_array, $artist);
+                    }
+                }
+
+                $custom_theme->profile_top_twelve = json_encode($artist_array);
+                $response_message = 'Top artists updated';
+                break;
+            case 'reset':
+                $custom_theme->profile_top_twelve = null;
+                $response_message = 'Top artists reset';
+                break;
+        }
+
+        $custom_theme->save();
+
+        return redirect('profile/edit/toptwelve')->with('success', $response_message);
     }
 
     private function starter_values() {

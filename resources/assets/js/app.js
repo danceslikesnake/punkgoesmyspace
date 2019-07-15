@@ -207,7 +207,6 @@ $(document).ready(function() {
     });
 
     if($("#sortable").length) {
-        alert('yes');
         $("#sortable").sortable({
             stop: function(event, ui) {
                 let sorted = $(this).sortable('toArray').toString();
@@ -248,6 +247,44 @@ $(document).ready(function() {
             let route = img.attr('data-route');
 
             img.attr('src', route.replace('%%', emoji));
+        });
+    }
+
+    if($('.top-12-artist').length) {
+        let total_selected = 0;
+
+        $('.top-12-artist').on('click', function() {
+            // first check how many are selected
+            let selected = $('.top-12-artist.is-selected').length;
+            console.log(selected);
+
+            let id = $(this).attr('data-id');
+
+            if($(this).hasClass('is-selected')) {
+                $(this).removeClass('is-selected');
+                $(this).find('.top-12-input').val('');
+            } else {
+                if(selected < 12) {
+                    $(this).addClass('is-selected');
+                    $(this).find('.top-12-input').val(id);
+                }
+            }
+        });
+    }
+
+    if($('#profile_image_preview').length) {
+        $('input#custom_profile_image').change(function() {
+            let image = document.getElementById('profile_image_preview');
+            let input = document.getElementById('custom_profile_image');
+
+            if(input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    image.src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
         });
     }
 });

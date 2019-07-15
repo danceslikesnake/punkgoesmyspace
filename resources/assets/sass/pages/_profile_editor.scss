@@ -2,7 +2,12 @@
   .editor-wrapper {
     position: relative;
     background: #F0F6FF;
-    min-height: calc(100vh - 170px);
+    border-bottom: 40px solid white;
+
+    @media screen and (min-width: 769px) {
+      min-height: calc(100vh - 170px);
+      border-bottom: none;
+    }
 
     .field {
       padding: 0 16px 16px 16px;
@@ -69,48 +74,89 @@
     }
 
     .editor-navigation {
-      @include positionAbsolute($top: 0, $left: 0, $bottom: 0);
-
-      width: 25%;
       background: white;
-      z-index: 2;
+
 
       -webkit-box-shadow: 4px 0 8px 4px rgba(35,88,184,0.09);
       -moz-box-shadow: 4px 0 8px 4px rgba(35,88,184,0.09);
       box-shadow: 4px 0 8px 4px rgba(35,88,184,0.09);
+
+      @media screen and (min-width: 769px) {
+        @include positionAbsolute($top: 0, $left: 0, $bottom: 0);
+
+        width: 25%;
+        z-index: 2;
+
+        -webkit-box-shadow: 4px 0 8px 4px rgba(35,88,184,0.09);
+        -moz-box-shadow: 4px 0 8px 4px rgba(35,88,184,0.09);
+        box-shadow: 4px 0 8px 4px rgba(35,88,184,0.09);
+      }
 
       h2 {
         line-height: 56px;
         font-size: 16px;
         font-weight: 700;
         border-bottom: 1px solid #F0F6FF;
-        margin-bottom: 16px;
+        padding-left: 16px;
 
         i {
           color: #E63D8A;
+        }
+
+        @media screen and (min-width: 769px) {
+          padding-left: 0;
+          text-align: center;
+          margin-bottom: 16px;
         }
       }
 
       p {
         padding: 0 16px;
         margin-bottom: 16px;
+        display: none;
+
+        @media screen and (min-width: 769px) {
+          display: block;
+        }
       }
 
       .custom-url-module {
-        padding-bottom: 16px;
-        border-bottom: 1px solid #F0F6FF;
+        @include positionAbsolute($top: 16px, $right: 0);
+
+        padding-right: 16px;
+
+        @media screen and (min-width: 769px) {
+          position: relative;
+          top: auto;
+          left: auto;
+          padding-left: 8px;
+          padding-right: 8px;
+          padding-bottom: 16px;
+          border-bottom: 1px solid #F0F6FF;
+        }
+        @media screen and (min-width: 960px) {
+          padding-left: 0;
+        }
 
         label {
-          display: block;
-          margin-bottom: 8px;
-          font-weight: 700;
+          display: none;
+
+          @media screen and (min-width:500px) {
+            display: inline-block;
+            font-weight: 700;
+          }
+          @media screen and (min-width: 769px) {
+            display: block;
+            margin-bottom: 8px;
+            margin-right: 8px;
+          }
         }
+
         input {
           @include border-radius(12px);
 
-          width: 208px;
-          margin: 0 0 0 16px;
           font-size: 12px;
+          max-width: 158px;
           line-height: 24px;
           background: rgba(35,88,184,0.15);
           box-shadow: inset 0 0 4px 2px rgba(35,88,184,0.15);
@@ -127,6 +173,14 @@
             background: #E63D8A;
             color: white;
           }
+
+          @media screen and (min-width: 769px) {
+            max-width: 208px;
+            width: 100%;
+          }
+          @media screen and (min-width: 960px) {
+            margin: 0 0 0 16px;
+          }
         }
         input:focus {
           background: rgba(35,88,184,0.25);
@@ -140,25 +194,80 @@
 
       ul {
         li {
+          width: 20%;
+          float: left;
+          text-align: center;
+
+          @media screen and (min-width: 769px) {
+            width: auto;
+            float: none;
+            text-align: inherit;
+          }
+
           a {
-            line-height: 40px;
+            line-height: 24px;
+            padding-top: 8px;
             display: block;
             font-size: 12px;
             font-weight: 700;
             color: $myspace-blue;
-            padding-left: 16px;
+            text-transform: uppercase;
 
             &:hover {
               background: rgba(#2358B8, 0.14);
+              border-bottom: 4px solid rgba(#2358B8, 0.14);
             }
 
             &.active-link {
-              border-right: 4px solid $myspace-blue;
+              border-bottom: 4px solid $myspace-blue;
               background: rgba(#2358B8, 0.07);
+            }
+
+            @media screen and (min-width: 769px) {
+              padding-left: 16px;
+              text-transform: none;
+              line-height: 40px;
+              padding-top: 0;
+
+              &:hover {
+                border-bottom: none;
+              }
+
+              &.active-link {
+                border-bottom: none;
+                border-right: 4px solid $myspace-blue;
+                background: rgba(#2358B8, 0.07);
+              }
             }
 
             i {
               opacity: 0.5;
+              font-size: 16px;
+
+              @media screen and (min-width: 769px) {
+                font-size: 12px;
+              }
+            }
+
+            span {
+              &.desktop {
+                display: none;
+
+                @media screen and (min-width: 769px) {
+                  display: inline;
+                }
+              }
+
+              &.mobile {
+                display: block;
+                font-size: 9px;
+                text-transform: uppercase;
+                font-weight: 500;
+
+                @media screen and (min-width: 769px) {
+                  display: none;
+                }
+              }
             }
           }
         }
@@ -166,20 +275,36 @@
     }
 
     .editor-content {
-      margin-left: 25%;
-      padding-bottom: 56px;
+
+      @media screen and (min-width: 769px) {
+        margin-left: 25%;
+        padding-bottom: 56px;
+      }
 
       header, footer {
         height: 56px;
         padding: 0 16px;
 
         h2 {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 700;
           color: $myspace-blue;
 
           i {
             opacity: 0.5;
+            font-size: 16px;
+          }
+
+          span {
+            display: none;
+
+            @media screen and (min-width: 500px) {
+              display: inline;
+            }
+          }
+
+          @media screen and (min-width: 769px) {
+            font-size: 16px;
           }
         }
 
@@ -214,6 +339,21 @@
       footer {
         border-top: 1px solid rgba(#2358B8, 0.11);
       }
+      
+      .desktop-only-feature {
+        padding: 28px 1.5rem 56px 1.5rem !important;
+
+        i {
+          font-size: 72px;
+          opacity: 0.5;
+          color: $myspace-blue;
+
+          margin-bottom: 16px;
+        }
+        @media screen and (min-width: 769px) {
+          display: none;
+        }
+      }
 
       .form {
         padding: 0 1.5rem 1.5rem 1.5rem;
@@ -221,7 +361,7 @@
         .divider-headline {
           font-weight: 700;
           color: rgba($myspace-blue, 0.5);
-          margin-bottom: 16px;
+          margin-bottom: 1.5rem;
         }
 
         .form-module {
@@ -295,6 +435,52 @@
           .details-list {
             strong {
               color: #646C9D;
+            }
+          }
+        }
+      }
+
+      .user-top-twelve {
+        .top-12-artist {
+          @include border-radius(8px);
+
+          background: rgba(0,0,0,0.05);
+          cursor: pointer;
+
+          &:hover {
+            background: rgba(#E63D8A, 0.15);
+          }
+
+          .top-12-artist-image {
+            @include border-radius(8px);
+
+            height: 150px;
+            width: 100%;
+            border: 4px solid transparent;
+            background-color: rgba(0,0,0,0.05);
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+          }
+          .top-12-artist-name {
+            line-height: 32px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 90%;
+            margin: auto;
+          }
+
+          &.is-selected {
+            background-color: #E63D8A;
+
+            .top-12-artist-image {
+              border: 4px solid #E63D8A;
+            }
+
+            .top-12-artist-name {
+              font-weight: 700;
+              color: white;
             }
           }
         }

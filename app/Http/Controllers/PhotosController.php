@@ -28,7 +28,7 @@ class PhotosController extends Controller
             $photo->photo_description = $request->input('photo_description');
 
         $get_sort = Photo::select('sort')->where('album_id', $request->album_id)->orderByDesc('sort')->take(1)->get()->toArray();
-        $photo->sort = $get_sort[0]['sort'] + 1;
+        $photo->sort = (count($get_sort) > 0) ? $get_sort[0]['sort'] + 1 : 1;
 
         $photo->save();
 

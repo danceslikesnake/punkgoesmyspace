@@ -8,26 +8,28 @@
             <div class="editor-content">
                 {!! Form::open(['action' => ['CustomThemesController@update_styles', $profile_id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                 <input type="hidden" name="_method" value="PUT" />
-                <header class="level">
-                    <div class="level-left">
-                        <div class="level-item">
-                            <h2><i class="fas fa-fw fa-palette"></i> profile styles</h2>
-                        </div>
-                    </div>
-                    <div class="level-right">
+                <div class="is-hidden-mobile">
+                @component('pages.profile.components.editor-content-header')
+                    @slot('title')
+                        <i class="fas fa-fw fa-palette"></i> <span>profile</span> styles
+                    @endslot
                         <div class="level-item">
                             <button type="submit" name="form_action" value="reset" class="button-cta outline"><i class="fas fa-undo-alt fa-fw"></i> reset</button>
                         </div>
                         <div class="level-item">
                             <button type="submit" name="form_action" value="save" class="button-cta solid"><i class="fas fa-save fa-fw"></i> save</button>
                         </div>
-                    </div>
-                </header>
+                @endcomponent
+                </div>
                 @include('shared.messages')
-                <div class="form">
+                <div class="form desktop-only-feature has-text-centered">
+                    <div><i class="fas fa-desktop"></i></div>
+                    <div>This feature is only available on your laptop or desktop computer</div>
+                </div>
+                <div class="form is-hidden-mobile">
                     <section class="form-module">
                         <header>
-                            <ul class="level options-tabs">
+                            <ul class="level options-tabs is-mobile">
                                 <li id="0" class="level-item has-text-centered active-tab">General</li>
                                 <li id="1" class="level-item has-text-centered">Background</li>
                                 <li id="2" class="level-item has-text-centered">Header</li>

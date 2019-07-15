@@ -4,6 +4,22 @@
     <div id="profile" class="container main-content-wrapper profile-width">
         @include('shared.header', ['banner_ad' => $banner_ad, 'use_custom_styles' => (isset($custom_theme['styles']) && !empty($custom_theme['styles'])) ? true : false])
         <div class="main-content">
+            @if(session('theme_error'))
+                <div id="error_404">
+                    <div class="error-box" style="margin-bottom: 24px;">
+                        <h2 class="level">
+                            <div class="level-left"><i class="fas fa-sad-cry"></i>&nbsp;&nbsp;{!! session('theme_error') !!}</div>
+                        </h2>
+                        <p>Here are a few things you can try:</p>
+                        <div class="content">
+                            <ul class="error-options">
+                                <li>Bouble check you have the correct theme url.</li>
+                                <li><a href="{{url('profile/edit/content')}}"><strong>Create your own theme!</strong></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            @endif
             @if($show_voting)
             <div class="voting-module">
                 <header class="level is-mobile voting-headline">
