@@ -20,7 +20,7 @@ class ProfileController extends Controller
         /**
          * Check if we should show the voting module
          */
-        $show_voting = true;
+        $show_voting = false;
         $custom_theme = null;
         if(isset($_COOKIE['pga_user_id'])) {
             $encrypter = app(\Illuminate\Contracts\Encryption\Encrypter::class);
